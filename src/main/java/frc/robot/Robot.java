@@ -4,10 +4,20 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.PneumaticsSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -16,11 +26,21 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final CTREConfigs ctreConfigs = new CTREConfigs();
-
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+
+  ArmSubsystem armSubsystem = new ArmSubsystem();
+  Compressor compressor = new Compressor(Constants.CompressorPort, PneumaticsModuleType.CTREPCM);
+  Timer time = new Timer();
+ 
+    private UsbCamera reflectiveCamera;
+    
+  
+
+  
+  //private UsbCamera pickUpCamera;
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,11 +51,36 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    
+    compressor.enableDigital();
+
+    try{
+      reflectiveCamera = CameraServer.startAutomaticCapture(0);
+      CvSink cvSink1 = CameraServer.getVideo();
+      CvSource outputStream1 = CameraServer.putVideo("Camera High", 160,  120);
+
+    }
+    catch(Exception e1){
+      System.err.println("Camera 1 failed");
+    }
+/* 
+    try{
+      final UsbCamera pickUpCamera = CameraServer.startAutomaticCapture(0);
+      CvSink cvSink2 = CameraServer.getVideo();
+      CvSource outputStream2 = CameraServer.putVideo("Camera Low", 160,  120);
+
+    }
+    catch(Exception e2){
+      System.err.println("Camera 2 failed");
+    }
+    */
+     
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
+   * that you want ran during disabled, autonomous, teleoperated and test.
    *
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
@@ -47,6 +92,29 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    
+    boolean pressorSwitchValue = compressor.getPressureSwitchValue();
+    SmartDashboard.putBoolean("Pressure value", pressorSwitchValue);
+    
+    //boolean coneSensorValue = coneSensor.get();
+    SmartDashboard.putBoolean("Cone Sensor", !armSubsystem.coneSensor.get());
+
+    SmartDashboard.putNumber("Timer", time.get());
+    
+
+
+    if(pressorSwitchValue){
+      compressor.disable();
+      time.start();
+    }
+    else{
+      if(time.get()>=15.0){
+        compressor.enableDigital();
+        time.reset();
+      }
+    }
+  
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -65,11 +133,16 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
+    
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+ 
+  }
 
   @Override
   public void teleopInit() {
@@ -80,6 +153,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
   }
 
   /** This function is called periodically during operator control. */
@@ -91,8 +165,20 @@ public class Robot extends TimedRobot {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
   }
+  // "We are going to create ibjects here"
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+
+    
+  }
+
+  /** This function is called once when the robot is first started up. */
+  @Override
+  public void simulationInit() {}
+
+  /** This function is called periodically whilst in simulation. */
+  @Override
+  public void simulationPeriodic() {}
 }

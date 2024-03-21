@@ -1,74 +1,186 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-//import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.ArmIn;
+import frc.robot.commands.ArmOut;
+import frc.robot.commands.AutoSwerveDrive;
+import frc.robot.commands.AutoSwerveTurn;
+//import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autos;
+import frc.robot.commands.CompressorControl;
+import frc.robot.commands.ElevatorDown;
+import frc.robot.commands.ElevatorUp;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.SolenoidClose;
+import frc.robot.commands.SolenoidOpen;
+import frc.robot.commands.SwerveBreak;
+import frc.robot.commands.SwerveCalibrate;
+import frc.robot.commands.SwerveDriveCommand;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.PneumaticsSubsystem;
+import frc.robot.subsystems.SwerveDriveTrain;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
+ * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-    /* Controllers */
-    private final XboxController driver0 = new XboxController(0);
-    //private final XboxController driver1 = new XboxController(1);
+  // The robot's subsystems and commands are defined here...
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-    /* Drive Controls */
-    private final int translationAxis = XboxController.Axis.kLeftY.value;
-    private final int strafeAxis = XboxController.Axis.kLeftX.value;
-    private final int rotationAxis = XboxController.Axis.kRightX.value;
-
-    /* Drive Buttons */
-    private final JoystickButton zeroGyro = new JoystickButton(driver0, XboxController.Button.kY.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver0, XboxController.Button.kLeftBumper.value);
-
-    /* Subsystems */
-    private final Swerve s_Swerve = new Swerve();
+  // Replace with CommandPS4Controller or CommandJoystick if needed
+  //private final CommandXboxController m_driverController =
+      //new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
 
-    /** The container for the robot. Contains subsystems, OI devices, and commands. */
-    public RobotContainer() {
-        s_Swerve.setDefaultCommand(
-            new TeleopSwerve(
-                s_Swerve, 
-                () -> -driver0.getRawAxis(translationAxis), 
-                () -> -driver0.getRawAxis(strafeAxis), 
-                () -> -driver0.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean()
-            )
-        );
+      private static final XboxController xbox1 = new XboxController(0);
+      private static final XboxController xbox2 = new XboxController(1);
 
-        // Configure the button bindings
-        configureButtonBindings();
+
+      private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
+
+      private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+      
+      private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+      private final PneumaticsSubsystem m_pneumaticsSubsystem = new PneumaticsSubsystem();
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  public RobotContainer() {
+    // Configure the trigger bindings
+    configureBindings();
+  }
+
+  /**
+   * Use this method to define your trigger->command mappings. Triggers can be created via the
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+   * predicate, or via the named factories in {@link
+   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
+   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+   * joysticks}.
+   */
+  private void configureBindings() {
+    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    //new Trigger(m_exampleSubsystem::exampleCondition)
+    //    .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+    driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1));
+
+    new JoystickButton(xbox1, 5).whileTrue(new SwerveBreak(driveTrain));
+
+    new JoystickButton(xbox2, 4).whileTrue(new ElevatorUp(m_elevatorSubsystem, true));
+    new JoystickButton(xbox2, 1).whileTrue(new ElevatorDown(m_elevatorSubsystem, true));
+    new JoystickButton(xbox2, 4).whileFalse(new ElevatorUp(m_elevatorSubsystem, false));
+    new JoystickButton(xbox2, 1).whileFalse(new ElevatorDown(m_elevatorSubsystem, false));
+
+
+    new JoystickButton(xbox2, 6).whileTrue(new ArmOut(m_armSubsystem, true));
+    new JoystickButton(xbox2, 5).whileTrue(new ArmIn(m_armSubsystem, true));
+    new JoystickButton(xbox2, 6).whileFalse(new ArmOut(m_armSubsystem, false));
+    new JoystickButton(xbox2, 5).whileFalse(new ArmIn(m_armSubsystem, false));
+    
+    new JoystickButton(xbox2, 2).toggleOnTrue(new SolenoidOpen(m_pneumaticsSubsystem));
+   
+    
+    //new JoystickButton(xbox2, 2).toggleOnFalse(new SolenoidClose(m_pneumaticsSubsystem));
+    
+    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
+    // cancelling on release.
+    //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+  }
+
+  /**
+   * Use this to pass the autonomous command to the main {@link Robot} class.
+   *
+   * @return the command to run in autonomous
+   */
+  public Command getAutonomousCommand() {
+    // An example command will be run in autonomous
+    return Commands.sequence(AutoElevatorUp(1), AutoArm(.6), AutoDrive(-.10), AutoTurn(), AutoCalibrate());//, AutoOpen(), AutoElevatorDown(), AutoClose(), AutoElevatorUp(2), AutoArm(1.3),AutoTurn());
+    //return AutoDrive();
+    
+  }
+
+  public Command AutoElevatorUp(double time){
+    return new ElevatorUp(m_elevatorSubsystem, true).withTimeout(time)
+    .andThen(new WaitCommand(.5));
+  }
+
+  public Command AutoArm(double time){
+    return new ArmOut(m_armSubsystem, true).withTimeout(time)
+    .andThen(new WaitCommand(.5));
+  }
+
+  public Command AutoElevatorDown(){
+    return new ElevatorDown(m_elevatorSubsystem, true).withTimeout(2.8);
+  }
+
+  public Command AutoOpen(){
+    return new SolenoidOpen(m_pneumaticsSubsystem).withTimeout(.5);
+  }
+
+  
+  public Command AutoClose(){
+    return new SolenoidClose(m_pneumaticsSubsystem).withTimeout(.5);
+  }
+
+  public Command AutoTurn(){// numbers on board
+    return new AutoSwerveTurn(driveTrain, .18).withTimeout(1.7)
+    .andThen(new WaitCommand(.25));
+  }
+
+  public Command AutoDrive(double speed){
+    return new AutoSwerveDrive(driveTrain, speed).withTimeout(.5)
+    .andThen(new WaitCommand(.25));
+  }
+
+  public Command AutoCalibrate(){
+    return new SwerveCalibrate(driveTrain);
+  }
+  
+
+
+
+  public static double getLeftYPower(){
+    double drivePower = xbox1.getRawAxis(0);
+    if (Math.abs(drivePower) < Constants.DEAD_ZONE){
+      drivePower = 0.0;
     }
 
-    /**
-     * Use this method to define your button->command mappings. Buttons can be created by
-     * instantiating a {@link GenericHID} or one of its subclasses ({@link
-     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-     */
-    private void configureButtonBindings() {
-        /* driver0 Buttons */
-        zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+    return drivePower;
+  }
+
+  public static double getLeftXPower(){
+    double drivePower = xbox1.getRawAxis(1);
+    if (Math.abs(drivePower) < Constants.DEAD_ZONE){
+      drivePower = 0.0;
     }
 
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
-    public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+    return drivePower;
+  }
+
+  public static double getRightXPower(){
+    double drivePower = xbox1.getRawAxis(4);
+    if (Math.abs(drivePower) < Constants.DEAD_ZONE){
+      drivePower = 0.0;
     }
+
+    return drivePower;
+  }
+
+
 }
