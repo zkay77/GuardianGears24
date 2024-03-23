@@ -50,7 +50,7 @@ public class SwerveModuleMK3 {
   private boolean isCoast;
 
                         //Pass in: created objects
-  public SwerveModuleMK3(TalonFX driveMotor, TalonFX angleMotor,CANCoder canCoder, Rotation2d offset, boolean isCoast) {
+  public SwerveModuleMK3(TalonFX driveMotor, TalonFX angleMotor,CANCoder canCoder, Rotation2d offset, boolean isCoast, boolean isInverted) {
     
     //set passed in objects to created objects 
     this.driveMotor = driveMotor;
@@ -100,7 +100,9 @@ public class SwerveModuleMK3 {
     else{
       driveMotor.setNeutralMode(NeutralMode.Brake); 
     }
-    
+    // sets inverted based off of individual module
+    driveMotor.setInverted(isInverted);
+
     CANCoderConfiguration canCoderConfiguration = new CANCoderConfiguration(); 
     canCoderConfiguration.magnetOffsetDegrees = offset.getDegrees(); 
     canCoder.configAllSettings(canCoderConfiguration); 

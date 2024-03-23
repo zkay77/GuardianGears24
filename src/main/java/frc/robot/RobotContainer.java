@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //private final CommandXboxController m_driverController =
@@ -49,7 +49,7 @@ public class RobotContainer {
 
 
       private static final XboxController xbox1 = new XboxController(0);
-      private static final XboxController xbox2 = new XboxController(1);
+      //private static final XboxController xbox2 = new XboxController(1);
 
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
@@ -82,18 +82,18 @@ public class RobotContainer {
 
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBreak(driveTrain));
 
-    new JoystickButton(xbox2, 4).whileTrue(new ElevatorUp(m_elevatorSubsystem, true));
-    new JoystickButton(xbox2, 1).whileTrue(new ElevatorDown(m_elevatorSubsystem, true));
-    new JoystickButton(xbox2, 4).whileFalse(new ElevatorUp(m_elevatorSubsystem, false));
-    new JoystickButton(xbox2, 1).whileFalse(new ElevatorDown(m_elevatorSubsystem, false));
+    new JoystickButton(xbox1, 4).whileTrue(new ElevatorUp(m_elevatorSubsystem, true));
+    new JoystickButton(xbox1, 1).whileTrue(new ElevatorDown(m_elevatorSubsystem, true));
+    new JoystickButton(xbox1, 4).whileFalse(new ElevatorUp(m_elevatorSubsystem, false));
+    new JoystickButton(xbox1, 1).whileFalse(new ElevatorDown(m_elevatorSubsystem, false));
 
 
-    new JoystickButton(xbox2, 6).whileTrue(new ArmOut(m_armSubsystem, true));
-    new JoystickButton(xbox2, 5).whileTrue(new ArmIn(m_armSubsystem, true));
-    new JoystickButton(xbox2, 6).whileFalse(new ArmOut(m_armSubsystem, false));
-    new JoystickButton(xbox2, 5).whileFalse(new ArmIn(m_armSubsystem, false));
-    
-    new JoystickButton(xbox2, 2).toggleOnTrue(new SolenoidOpen(m_pneumaticsSubsystem));
+    new JoystickButton(xbox1, 6).whileTrue(new ArmOut(m_armSubsystem, true));
+    new JoystickButton(xbox1, 5).whileTrue(new ArmIn(m_armSubsystem, true));
+    new JoystickButton(xbox1, 6).whileFalse(new ArmOut(m_armSubsystem, false));
+    new JoystickButton(xbox1, 5).whileFalse(new ArmIn(m_armSubsystem, false));
+  
+    new JoystickButton(xbox1, 2).toggleOnTrue(new SolenoidOpen(m_pneumaticsSubsystem));
    
     
     //new JoystickButton(xbox2, 2).toggleOnFalse(new SolenoidClose(m_pneumaticsSubsystem));

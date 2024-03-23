@@ -36,15 +36,15 @@ public class SwerveDriveTrain extends SubsystemBase {
     ), 
     new Translation2d(
       Units.inchesToMeters(9.591), //y
+      Units.inchesToMeters(-9.591) //x
+    ), 
+    new Translation2d(
+      Units.inchesToMeters(-9.591), //y
       Units.inchesToMeters(9.591) //x
     ), 
     new Translation2d(
-      Units.inchesToMeters(9.591), //y
-      Units.inchesToMeters(9.591) //x
-    ), 
-    new Translation2d(
-      Units.inchesToMeters(9.591), //y
-      Units.inchesToMeters(9.591) //x
+      Units.inchesToMeters(-9.591), //y
+      Units.inchesToMeters(-9.591) //x
     )
   ); 
     
@@ -52,10 +52,10 @@ public class SwerveDriveTrain extends SubsystemBase {
   //create array of Modules
   private SwerveModuleMK3[] modules = new SwerveModuleMK3[] {
     
-    new SwerveModuleMK3(new TalonFX(Constants.frontLeftDriveId), new TalonFX(Constants.frontLeftSteerId), new CANCoder(Constants.frontLeftCANCoderId), Rotation2d.fromDegrees(Constants.frontLeftOffset),m_isCoast), // Front Left
-    new SwerveModuleMK3(new TalonFX(Constants.frontRightDriveId), new TalonFX(Constants.frontRightSteerId), new CANCoder(Constants.frontRightCANCoderId), Rotation2d.fromDegrees(Constants.frontRightOffset),m_isCoast), // Front Right
-    new SwerveModuleMK3(new TalonFX(Constants.backLeftDriveId), new TalonFX(Constants.backLeftSteerId), new CANCoder(Constants.backLeftCANCoderId), Rotation2d.fromDegrees(Constants.backLeftOffset),m_isCoast), // Back Left
-    new SwerveModuleMK3(new TalonFX(Constants.backRightDriveId), new TalonFX(Constants.backRightSteerId), new CANCoder(Constants.backRightCANCoderId), Rotation2d.fromDegrees(Constants.backRightOffset),m_isCoast)  // Back Right
+    new SwerveModuleMK3(new TalonFX(Constants.frontLeftDriveId), new TalonFX(Constants.frontLeftSteerId), new CANCoder(Constants.frontLeftCANCoderId), Rotation2d.fromDegrees(Constants.frontLeftOffset),m_isCoast, Constants.frontLeftInverted), // Front Left
+    new SwerveModuleMK3(new TalonFX(Constants.frontRightDriveId), new TalonFX(Constants.frontRightSteerId), new CANCoder(Constants.frontRightCANCoderId), Rotation2d.fromDegrees(Constants.frontRightOffset),m_isCoast, Constants.frontRightInverted), // Front Right
+    new SwerveModuleMK3(new TalonFX(Constants.backLeftDriveId), new TalonFX(Constants.backLeftSteerId), new CANCoder(Constants.backLeftCANCoderId), Rotation2d.fromDegrees(Constants.backLeftOffset),m_isCoast, Constants.backLeftInverted), // Back Left
+    new SwerveModuleMK3(new TalonFX(Constants.backRightDriveId), new TalonFX(Constants.backRightSteerId), new CANCoder(Constants.backRightCANCoderId), Rotation2d.fromDegrees(Constants.backRightOffset),m_isCoast, Constants.backRightInverted)  // Back Right
   }; 
 
 
@@ -97,7 +97,7 @@ public class SwerveDriveTrain extends SubsystemBase {
       SmartDashboard.putNumber("gyro Q X", gyro.getQuaternionX());
       SmartDashboard.putNumber("gyro Q Y", gyro.getQuaternionY());
       SmartDashboard.putNumber("gyro Q Z", gyro.getQuaternionZ());
-
+      SmartDashboard.putNumber("rotation", rot);
     }
   }
 
