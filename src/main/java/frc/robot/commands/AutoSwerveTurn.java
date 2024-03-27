@@ -12,11 +12,11 @@ public class AutoSwerveTurn extends Command {
   private final SwerveDriveTrain m_swerveDriveTrain;
   private final double m_speed;
   /** Creates a new AutoSwerveTurn. */
-  public AutoSwerveTurn(final SwerveDriveTrain SwerveDriveTrain)  {
+  public AutoSwerveTurn(final SwerveDriveTrain SwerveDriveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
 this(SwerveDriveTrain, Constants.DEFAULT_SPEED);
   }
-  public AutoSwerveTurn(final SwerveDriveTrain swerveDriveTrain, final double speed){
+  public AutoSwerveTurn(final SwerveDriveTrain swerveDriveTrain, final double speed) {
     this.m_swerveDriveTrain = swerveDriveTrain;
     this.m_speed = speed;
     addRequirements(this.m_swerveDriveTrain);
@@ -28,13 +28,13 @@ this(SwerveDriveTrain, Constants.DEFAULT_SPEED);
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_swerveDriveTrain.drive(0, 0, m_speed, true, false,true);
+    m_swerveDriveTrain.drive(0, 0, m_speed, true, false, true);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_swerveDriveTrain.drive(0, 0, 0, true, false,true);
+    m_swerveDriveTrain.drive(0, 0, 0, true, false, true);
   }
 
   // Returns true when the command should end.

@@ -21,14 +21,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
-  
- 
-    
-  
-
-  
-  //private UsbCamera pickUpCamera;
   
 
   /**
@@ -41,21 +33,6 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-
-
-
-/* 
-    try{
-      final UsbCamera pickUpCamera = CameraServer.startAutomaticCapture(0);
-      CvSink cvSink2 = CameraServer.getVideo();
-      CvSource outputStream2 = CameraServer.putVideo("Camera Low", 160,  120);
-
-    }
-    catch(Exception e2){
-      System.err.println("Camera 2 failed");
-    }
-    */
-     
   }
 
   /**
@@ -128,7 +105,7 @@ public class Robot extends TimedRobot {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
   }
-  // "We are going to create ibjects here"
+  // "We are going to create objects here"
 
   /** This function is called periodically during test mode. */
   @Override

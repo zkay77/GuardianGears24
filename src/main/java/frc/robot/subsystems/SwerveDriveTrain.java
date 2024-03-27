@@ -79,10 +79,9 @@ public class SwerveDriveTrain extends SubsystemBase {
 
     if(calibrateGyro){
       gyro.reset(); // recalibrates gyro offset 
-      //gyro.zeroYaw();
     } 
                                                                                       //Rotation2d.fromDegrees(-gyro.getAngle())
-    SwerveModuleState[] states = kinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot,Rotation2d.fromDegrees(-gyro.getAngle())) : new ChassisSpeeds(xSpeed, ySpeed, rot)); 
+    SwerveModuleState[] states = kinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, Rotation2d.fromDegrees(-gyro.getAngle())) : new ChassisSpeeds(xSpeed, ySpeed, rot)); 
 
     SwerveDriveKinematics.desaturateWheelSpeeds(states, Constants.kMaxSpeed); 
 

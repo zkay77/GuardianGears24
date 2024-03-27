@@ -30,12 +30,12 @@ public class AutoSwerveDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_swerveDriveTrain.drive(m_speed,0, 0, false, false,true);
+    m_swerveDriveTrain.drive(m_speed, 0, 0, false, false, true);
   } 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_swerveDriveTrain.drive(0, 0, 0, true, false,true);
+    m_swerveDriveTrain.drive(0, 0, 0, true, false, true);
   }
 
   // Returns true when the command should end.
