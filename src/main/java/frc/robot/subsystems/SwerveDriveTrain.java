@@ -97,6 +97,8 @@ public class SwerveDriveTrain extends SubsystemBase {
       SmartDashboard.putNumber("gyro Q X", gyro.getQuaternionX());
       SmartDashboard.putNumber("gyro Q Y", gyro.getQuaternionY());
       SmartDashboard.putNumber("gyro Q Z", gyro.getQuaternionZ());
+      SmartDashboard.putNumber("xSpeed", xSpeed);
+      SmartDashboard.putNumber("ySpeed", ySpeed);
       SmartDashboard.putNumber("rotation", rot);
     }
   }

@@ -4,20 +4,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
+
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.PneumaticsSubsystem;
+//import frc.robot.subsystems.ArmSubsystem;
+//import frc.robot.subsystems.PneumaticsSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,11 +22,8 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  ArmSubsystem armSubsystem = new ArmSubsystem();
-  Compressor compressor = new Compressor(Constants.CompressorPort, PneumaticsModuleType.CTREPCM);
-  Timer time = new Timer();
+  
  
-    private UsbCamera reflectiveCamera;
     
   
 
@@ -52,18 +41,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    
-    compressor.enableDigital();
 
-    try{
-      reflectiveCamera = CameraServer.startAutomaticCapture(0);
-      CvSink cvSink1 = CameraServer.getVideo();
-      CvSource outputStream1 = CameraServer.putVideo("Camera High", 160,  120);
 
-    }
-    catch(Exception e1){
-      System.err.println("Camera 1 failed");
-    }
+
 /* 
     try{
       final UsbCamera pickUpCamera = CameraServer.startAutomaticCapture(0);
@@ -93,28 +73,11 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    
-    boolean pressorSwitchValue = compressor.getPressureSwitchValue();
-    SmartDashboard.putBoolean("Pressure value", pressorSwitchValue);
-    
-    //boolean coneSensorValue = coneSensor.get();
-    SmartDashboard.putBoolean("Cone Sensor", !armSubsystem.coneSensor.get());
 
-    SmartDashboard.putNumber("Timer", time.get());
     
 
 
-    if(pressorSwitchValue){
-      compressor.disable();
-      time.start();
-    }
-    else{
-      if(time.get()>=15.0){
-        compressor.enableDigital();
-        time.reset();
-      }
-    }
-  
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

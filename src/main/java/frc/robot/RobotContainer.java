@@ -4,25 +4,20 @@
 
 package frc.robot;
 
-import frc.robot.commands.ArmIn;
-import frc.robot.commands.ArmOut;
+
 import frc.robot.commands.AutoSwerveDrive;
 import frc.robot.commands.AutoSwerveTurn;
 //import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.CompressorControl;
-import frc.robot.commands.ElevatorDown;
-import frc.robot.commands.ElevatorUp;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.SolenoidClose;
-import frc.robot.commands.SolenoidOpen;
+
+//import frc.robot.commands.CompressorControl;
+
+//import frc.robot.commands.SolenoidClose;
+//import frc.robot.commands.SolenoidOpen;
 import frc.robot.commands.SwerveBreak;
 import frc.robot.commands.SwerveCalibrate;
 import frc.robot.commands.SwerveDriveCommand;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.PneumaticsSubsystem;
+
+//import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.SwerveDriveTrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -54,10 +49,8 @@ public class RobotContainer {
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
 
-      private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
-      
-      private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
-      private final PneumaticsSubsystem m_pneumaticsSubsystem = new PneumaticsSubsystem();
+
+      //private final PneumaticsSubsystem m_pneumaticsSubsystem = new PneumaticsSubsystem();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -82,18 +75,9 @@ public class RobotContainer {
 
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBreak(driveTrain));
 
-    new JoystickButton(xbox1, 4).whileTrue(new ElevatorUp(m_elevatorSubsystem, true));
-    new JoystickButton(xbox1, 1).whileTrue(new ElevatorDown(m_elevatorSubsystem, true));
-    new JoystickButton(xbox1, 4).whileFalse(new ElevatorUp(m_elevatorSubsystem, false));
-    new JoystickButton(xbox1, 1).whileFalse(new ElevatorDown(m_elevatorSubsystem, false));
 
-
-    new JoystickButton(xbox1, 6).whileTrue(new ArmOut(m_armSubsystem, true));
-    new JoystickButton(xbox1, 5).whileTrue(new ArmIn(m_armSubsystem, true));
-    new JoystickButton(xbox1, 6).whileFalse(new ArmOut(m_armSubsystem, false));
-    new JoystickButton(xbox1, 5).whileFalse(new ArmIn(m_armSubsystem, false));
   
-    new JoystickButton(xbox1, 2).toggleOnTrue(new SolenoidOpen(m_pneumaticsSubsystem));
+    //new JoystickButton(xbox1, 2).toggleOnTrue(new SolenoidOpen(m_pneumaticsSubsystem));
    
     
     //new JoystickButton(xbox2, 2).toggleOnFalse(new SolenoidClose(m_pneumaticsSubsystem));
@@ -110,33 +94,19 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Commands.sequence(AutoElevatorUp(1), AutoArm(.6), AutoDrive(-.10), AutoTurn(), AutoCalibrate());//, AutoOpen(), AutoElevatorDown(), AutoClose(), AutoElevatorUp(2), AutoArm(1.3),AutoTurn());
+    return Commands.sequence(AutoDrive(-.10), AutoTurn(), AutoCalibrate());//, AutoOpen(), AutoElevatorDown(), AutoClose(), AutoElevatorUp(2), AutoArm(1.3),AutoTurn());
     //return AutoDrive();
     
   }
 
-  public Command AutoElevatorUp(double time){
-    return new ElevatorUp(m_elevatorSubsystem, true).withTimeout(time)
-    .andThen(new WaitCommand(.5));
-  }
-
-  public Command AutoArm(double time){
-    return new ArmOut(m_armSubsystem, true).withTimeout(time)
-    .andThen(new WaitCommand(.5));
-  }
-
-  public Command AutoElevatorDown(){
-    return new ElevatorDown(m_elevatorSubsystem, true).withTimeout(2.8);
-  }
-
-  public Command AutoOpen(){
-    return new SolenoidOpen(m_pneumaticsSubsystem).withTimeout(.5);
-  }
+  //public Command AutoOpen(){
+   // return new SolenoidOpen(m_pneumaticsSubsystem).withTimeout(.5);
+ // }
 
   
-  public Command AutoClose(){
-    return new SolenoidClose(m_pneumaticsSubsystem).withTimeout(.5);
-  }
+ // public Command AutoClose(){
+    //return new SolenoidClose(m_pneumaticsSubsystem).withTimeout(.5);
+ // }
 
   public Command AutoTurn(){// numbers on board
     return new AutoSwerveTurn(driveTrain, .18).withTimeout(1.7)
