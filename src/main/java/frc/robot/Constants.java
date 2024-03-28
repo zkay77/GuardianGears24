@@ -21,13 +21,13 @@ public final class Constants {
     public static final int reverseChannel = 0;
     public static final int SolenoidModule = 0;
 
-    public static final int sparkMaxDeviceID = 2;
-    public static final int topSwitchChannel = 1; 
-    public static final int bottomSwitchChannel = 0; 
+  //This is the arm motor
+  public static final int armCanControllerID = 2;
+    public static final int upperSensorID = 1;
+    public static final int lowerSensorID = 0;
 
     public static final int armMotorChannel = 0; 
     public static final int coneSensorChannel = 2; 
-
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5; //1 60
