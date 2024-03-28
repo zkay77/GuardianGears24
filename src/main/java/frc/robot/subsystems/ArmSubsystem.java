@@ -7,25 +7,25 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ArmSubsystem extends SubsystemBase {
+  static PWMTalonSRX armMotor = new PWMTalonSRX(Constants.armMotorChannel);
+ 
   /** Creates a new ArmSubsystem. */
   public ArmSubsystem() {
 
   }
 
-  public void activateMotor(double speed){
+  public void spinMotor(double speed){
     armMotor.set(speed);
   }
 
-  static PWMTalonSRX armMotor = new PWMTalonSRX(Constants.armMotorChannel);
-
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() { // This method will be called once per scheduler run
+
   }
 
-  
   public static void turnOnMotor(double speed){
     armMotor.set(speed);
   }

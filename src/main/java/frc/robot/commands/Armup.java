@@ -28,17 +28,17 @@ public class ArmUp extends Command {
   @Override
   public void execute() {
     if (isPressed){
-      armSubsystem.activateMotor(.2);
+      armSubsystem.spinMotor(.2);
     }
     else {
-      armSubsystem.activateMotor(0);
+      armSubsystem.spinMotor(0);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    armSubsystem.activateMotor(0);
+    armSubsystem.spinMotor(0);
   }
 
   // Returns true when the command should end.

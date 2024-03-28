@@ -11,7 +11,7 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {}
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() { // This method will be called once per scheduler run
+    
   }
 }
