@@ -16,22 +16,20 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
     public static final double DEFAULT_SPEED = 1000.0;
-    public static final int CompressorPort = 0;
     public static final int fowardChannel = 1;
     public static final int reverseChannel = 0;
-    public static final int SolenoidModule = 0;
 
   //This is the arm motor
   public static final int armCanControllerID = 2;
-    public static final int upperSensorID = 1;
-    public static final int lowerSensorID = 0;
-    public static final int armMotorChannel = 0; 
+    public static final int topArmLimitSwitchChannel = 1;
+    public static final int bottomArmLimitSwitchChannel = 1;
+    public static final int armMotorChannel = 0;
     
   //set offsets for every module 
-  public static double frontLeftOffset = 113.5; //1 60
-  public static double frontRightOffset = 229; //155
-  public static double backLeftOffset = 173.5; //3 10
-  public static double backRightOffset = 92; //2 60
+  public static double frontLeftOffset = 113.5;
+  public static double frontRightOffset = 229;
+  public static double backLeftOffset = 173.5;
+  public static double backRightOffset = 92;
 
   //set CAN ids for every module
   public static final int frontLeftDriveId = 10; 

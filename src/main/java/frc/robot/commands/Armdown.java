@@ -13,7 +13,7 @@ public class ArmDown extends Command {
 
   boolean isPressed;
 
-  /** Creates a new ArmExtend. */
+  /** Creates a new ArmDown. */
   public ArmDown(ArmSubsystem m_armSubsystem, boolean m_isPressed) {
     armSubsystem = m_armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,7 +24,9 @@ public class ArmDown extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   final XboxController xbox = new XboxController(0);
   // Called every time the scheduler runs while the command is scheduled.

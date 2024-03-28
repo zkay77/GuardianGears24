@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ArmSubsystem extends SubsystemBase {
   static PWMTalonSRX armMotor = new PWMTalonSRX(Constants.armMotorChannel);
- 
+  public static DigitalInput topArmLimitSwitch = new DigitalInput(Constants.topArmLimitSwitchChannel);
+  public static DigitalInput bottomArmLimitSwitch = new DigitalInput(Constants.bottomArmLimitSwitchChannel);
   /** Creates a new ArmSubsystem. */
   public ArmSubsystem() {
 
@@ -22,7 +23,7 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() { // This method will be called once per scheduler run
+  public void periodic(){ // This method will be called once per scheduler run
 
   }
 

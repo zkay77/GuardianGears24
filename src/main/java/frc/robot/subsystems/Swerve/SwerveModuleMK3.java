@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.Swerve;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 //motor controls to import: feedbackDevice, NeutralMode, Remote Sensor Source,
@@ -30,7 +29,7 @@ public class SwerveModuleMK3 {
 
   // set constant PIDF values
   private static final double kDriveP = 5.0; //need to pick these values
-  private static final double kDriveI = 0.01; //these are from last year
+  private static final double kDriveI = 0.01; //these are from 2022
   private static final double kDriveD = 0.0;  //TODO: figure out what these should be 
   private static final double kDriveF = 0.2;
 
@@ -50,7 +49,7 @@ public class SwerveModuleMK3 {
   private boolean isCoast;
 
                         //Pass in: created objects
-  public SwerveModuleMK3(TalonFX driveMotor, TalonFX angleMotor,CANCoder canCoder, Rotation2d offset, boolean isCoast, boolean isInverted) {
+  public SwerveModuleMK3(TalonFX driveMotor, TalonFX angleMotor, CANCoder canCoder, Rotation2d offset, boolean isCoast, boolean isInverted) {
     
     //set passed in objects to created objects 
     this.driveMotor = driveMotor;
@@ -82,7 +81,7 @@ public class SwerveModuleMK3 {
 
     
 
-//drive motor settings
+  //drive motor settings
     // creat drive Talon Configuration
     TalonFXConfiguration driveTalonFXConfiguration = new TalonFXConfiguration(); 
     // set PIDF values 

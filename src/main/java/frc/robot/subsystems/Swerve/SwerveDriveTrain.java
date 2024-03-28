@@ -51,10 +51,10 @@ public class SwerveDriveTrain extends SubsystemBase {
   //create array of Modules
   private SwerveModuleMK3[] modules = new SwerveModuleMK3[] {
     
-    new SwerveModuleMK3(new TalonFX(Constants.frontLeftDriveId), new TalonFX(Constants.frontLeftSteerId), new CANCoder(Constants.frontLeftCANCoderId), Rotation2d.fromDegrees(Constants.frontLeftOffset),m_isCoast, Constants.frontLeftInverted), // Front Left
-    new SwerveModuleMK3(new TalonFX(Constants.frontRightDriveId), new TalonFX(Constants.frontRightSteerId), new CANCoder(Constants.frontRightCANCoderId), Rotation2d.fromDegrees(Constants.frontRightOffset),m_isCoast, Constants.frontRightInverted), // Front Right
-    new SwerveModuleMK3(new TalonFX(Constants.backLeftDriveId), new TalonFX(Constants.backLeftSteerId), new CANCoder(Constants.backLeftCANCoderId), Rotation2d.fromDegrees(Constants.backLeftOffset),m_isCoast, Constants.backLeftInverted), // Back Left
-    new SwerveModuleMK3(new TalonFX(Constants.backRightDriveId), new TalonFX(Constants.backRightSteerId), new CANCoder(Constants.backRightCANCoderId), Rotation2d.fromDegrees(Constants.backRightOffset),m_isCoast, Constants.backRightInverted)  // Back Right
+    new SwerveModuleMK3(new TalonFX(Constants.frontLeftDriveId), new TalonFX(Constants.frontLeftSteerId), new CANCoder(Constants.frontLeftCANCoderId), Rotation2d.fromDegrees(Constants.frontLeftOffset), m_isCoast, Constants.frontLeftInverted), // Front Left
+    new SwerveModuleMK3(new TalonFX(Constants.frontRightDriveId), new TalonFX(Constants.frontRightSteerId), new CANCoder(Constants.frontRightCANCoderId), Rotation2d.fromDegrees(Constants.frontRightOffset), m_isCoast, Constants.frontRightInverted), // Front Right
+    new SwerveModuleMK3(new TalonFX(Constants.backLeftDriveId), new TalonFX(Constants.backLeftSteerId), new CANCoder(Constants.backLeftCANCoderId), Rotation2d.fromDegrees(Constants.backLeftOffset), m_isCoast, Constants.backLeftInverted), // Back Left
+    new SwerveModuleMK3(new TalonFX(Constants.backRightDriveId), new TalonFX(Constants.backRightSteerId), new CANCoder(Constants.backRightCANCoderId), Rotation2d.fromDegrees(Constants.backRightOffset), m_isCoast, Constants.backRightInverted)  // Back Right
   }; 
 
 

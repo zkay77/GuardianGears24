@@ -6,10 +6,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class DeliverySubsystem extends SubsystemBase {
-  static CANSparkMax mouthMotor = new CANSparkMax(Constants.armCanControllerID, MotorType.kBrushless);
+  static CANSparkMax deliveryMotor = new CANSparkMax(Constants.armCanControllerID, MotorType.kBrushless);
   // put sensor here later senorse :]
 
-  /** Creates a new ArmSubsystem. */
+  /** Creates a new DeliverySubsystem. */
   public DeliverySubsystem() {
   //march 21 2024 hello old me-Isaac Gonterman
   }
@@ -20,12 +20,12 @@ public class DeliverySubsystem extends SubsystemBase {
   }
 
 public void spinMotor (double speed){
-    mouthMotor.set(speed);
+    deliveryMotor.set(speed);
   }
   
 public static void turnOnMotor(double speed){
-  mouthMotor.set(speed);
-}
+  deliveryMotor.set(speed);
+  }
 
 
 }

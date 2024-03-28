@@ -11,7 +11,7 @@ public class ArmUp extends Command {
   private final ArmSubsystem armSubsystem;
 
   boolean isPressed;
-  /** Creates a new ArmIn. */
+  /** Creates a new ArmUp. */
   public ArmUp(ArmSubsystem m_armSubsystem, boolean m_isPressed) {
     armSubsystem = m_armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,7 +22,9 @@ public class ArmUp extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
