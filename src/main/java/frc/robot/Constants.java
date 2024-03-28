@@ -25,14 +25,12 @@ public final class Constants {
   public static final int armCanControllerID = 2;
     public static final int upperSensorID = 1;
     public static final int lowerSensorID = 0;
-
     public static final int armMotorChannel = 0; 
-    public static final int coneSensorChannel = 2; 
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5; //1 60
   public static double frontRightOffset = 229; //155
-  public static double backLeftOffset = 173.5;//3 10
+  public static double backLeftOffset = 173.5; //3 10
   public static double backRightOffset = 92; //2 60
 
   //set CAN ids for every module

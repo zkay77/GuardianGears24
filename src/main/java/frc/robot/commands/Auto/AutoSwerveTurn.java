@@ -2,23 +2,21 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
-
+package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.SwerveDriveTrain;
 import frc.robot.Constants;
+import frc.robot.subsystems.Swerve.SwerveDriveTrain;
 
-public class AutoSwerveDrive extends Command {
-  /** Creates a new AutoSwerveDrive. */
+public class AutoSwerveTurn extends Command {
   private final SwerveDriveTrain m_swerveDriveTrain;
   private final double m_speed;
- 
-  public AutoSwerveDrive(final SwerveDriveTrain swerveDriveTrain) {
-    this(swerveDriveTrain, Constants.DEFAULT_SPEED);
-    //Use addRequirements() here to declare subsystem dependencies.
+  /** Creates a new AutoSwerveTurn. */
+  public AutoSwerveTurn(final SwerveDriveTrain SwerveDriveTrain) {
+    // Use addRequirements() here to declare subsystem dependencies.
+this(SwerveDriveTrain, Constants.DEFAULT_SPEED);
   }
-  public AutoSwerveDrive(final SwerveDriveTrain swerveDriveTrain, final double speed){
+  public AutoSwerveTurn(final SwerveDriveTrain swerveDriveTrain, final double speed) {
     this.m_swerveDriveTrain = swerveDriveTrain;
     this.m_speed = speed;
     addRequirements(this.m_swerveDriveTrain);
@@ -30,8 +28,9 @@ public class AutoSwerveDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_swerveDriveTrain.drive(m_speed, 0, 0, false, false, true);
-  } 
+    m_swerveDriveTrain.drive(0, 0, m_speed, true, false, true);
+  }
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

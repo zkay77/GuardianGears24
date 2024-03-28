@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems; 
+package frc.robot.subsystems.Swerve; 
 
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase; 
@@ -16,7 +16,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
 import edu.wpi.first.math.util.Units;  
 import com.kauailabs.navx.frc.AHRS; 
-//import edu.wpi.first.wpilibj.SerialPort; 
 import edu.wpi.first.wpilibj.SPI; 
 import edu.wpi.first.math.geometry.Rotation2d; 
 
@@ -24,7 +23,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class SwerveDriveTrain extends SubsystemBase {
 
 
-    //set gyro 
+  //set gyro 
   public static AHRS gyro = new AHRS(SPI.Port.kMXP); 
   public boolean m_isCoast;
 
@@ -92,7 +91,6 @@ public class SwerveDriveTrain extends SubsystemBase {
       //below is a line to comment out from step 5 
       module.setDesiredState(state); 
       SmartDashboard.putNumber("gyro Angle", gyro.getAngle());
-
       SmartDashboard.putNumber("gyro Q X", gyro.getQuaternionX());
       SmartDashboard.putNumber("gyro Q Y", gyro.getQuaternionY());
       SmartDashboard.putNumber("gyro Q Z", gyro.getQuaternionZ());

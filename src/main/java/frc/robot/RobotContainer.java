@@ -5,15 +5,12 @@
 package frc.robot;
 
 
-import frc.robot.commands.AutoSwerveDrive;
-import frc.robot.commands.AutoSwerveTurn;
-
-import frc.robot.commands.SwerveBreak;
-import frc.robot.commands.SwerveCalibrate;
-import frc.robot.commands.SwerveDriveCommand;
-import frc.robot.Constants;
-
-import frc.robot.subsystems.SwerveDriveTrain;
+import frc.robot.commands.Auto.AutoSwerveDrive;
+import frc.robot.commands.Auto.AutoSwerveTurn;
+import frc.robot.commands.Swerve.SwerveBreak;
+import frc.robot.commands.Swerve.SwerveCalibrate;
+import frc.robot.commands.Swerve.SwerveDriveCommand;
+import frc.robot.subsystems.Swerve.SwerveDriveTrain;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -31,12 +28,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
       private static final XboxController xbox1 = new XboxController(0);
-      //private static final XboxController xbox2 = new XboxController(1);
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
 
-
-      //private final PneumaticsSubsystem m_pneumaticsSubsystem = new PneumaticsSubsystem();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings

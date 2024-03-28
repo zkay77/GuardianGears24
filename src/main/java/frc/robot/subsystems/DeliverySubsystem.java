@@ -2,17 +2,16 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.DigitalInput;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-public class MouthSubsystem extends SubsystemBase {
+public class DeliverySubsystem extends SubsystemBase {
   /** Creates a new ArmSubsystem. */
-  public MouthSubsystem() {
+  public DeliverySubsystem() {
 //march 21 2024 hello old me-Isaac Gonterman
   }
   
-  static CANSparkMax mouthMotor = new CANSparkMax(Constants.armCanControllerId, MotorType.kBrushless );
+  static CANSparkMax mouthMotor = new CANSparkMax(Constants.armCanControllerID, MotorType.kBrushless);
   // put sensor here later senorse :]
 
   @Override

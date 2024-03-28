@@ -8,13 +8,13 @@ import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class Armdown extends Command {
+public class ArmDown extends Command {
   private final ArmSubsystem armSubsystem;
 
   boolean isPressed;
 
   /** Creates a new ArmExtend. */
-  public Armdown(ArmSubsystem m_armSubsystem, boolean m_isPressed) {
+  public ArmDown(ArmSubsystem m_armSubsystem, boolean m_isPressed) {
     armSubsystem = m_armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_armSubsystem);
@@ -26,25 +26,17 @@ public class Armdown extends Command {
   @Override
   public void initialize() {}
 
-  final XboxController xbox = new XboxController (0);
+  final XboxController xbox = new XboxController(0);
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (isPressed){
-      if(!armSubsystem.coneSensor.get())  
-        armSubsystem.spinMotor(-.9);
-      else  
-        armSubsystem.spinMotor(-.5);
-    }
-    else {
-      armSubsystem.spinMotor(0);
-    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    armSubsystem.spinMotor(0);
+    armSubsystem.activateMotor(0);
   }
 
   // Returns true when the command should end.
