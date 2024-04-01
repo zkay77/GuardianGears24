@@ -19,7 +19,7 @@ public final class Constants {
 
   public static final int deliveryMotorID = 2;
 
-  //arm PWM channels
+  //CAN IDs and PWM channels
   public static final int armMotorID = 10;
   public static final int topArmLimitSwitchChannel = 1;
   public static final int bottomArmLimitSwitchChannel = 1;

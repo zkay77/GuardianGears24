@@ -70,6 +70,8 @@ public class RobotContainer {
     new JoystickButton(xbox1, 6).whileTrue(new ArmUp(armSubsystem, true)); 
     new JoystickButton(xbox1, 6).whileFalse(new ArmUp(armSubsystem, false)); 
     // arm down, button 5 (LB), driver 2
+    new JoystickButton(xbox1, 5).whileTrue(new ArmDown(armSubsystem, true)); 
+    new JoystickButton(xbox1, 5).whileFalse(new ArmDown(armSubsystem, false)); 
     // delivery on, button 6 (RB), driver 2
   }
 
