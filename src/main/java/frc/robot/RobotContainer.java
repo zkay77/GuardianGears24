@@ -59,20 +59,20 @@ public class RobotContainer {
    */
   // Driver 2 controls arm up and down, delivery
   private void configureBindings() {
-    // swerve drive, driver 1
+    // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // brake swerve, button 5 (LB), driver 1
+    // Brake swerve, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
-    // intake on, button 6 (RB), driver 1
-    // climber up, button 12 (RT), driver 1
-    // climber down, button 11 (LT), driver 1
-    // arm up, button 6 (RB), driver 2
-    new JoystickButton(xbox1, 6).whileTrue(new ArmUp(armSubsystem, true)); 
-    new JoystickButton(xbox1, 6).whileFalse(new ArmUp(armSubsystem, false)); 
-    // arm down, button 5 (LB), driver 2
-    new JoystickButton(xbox1, 5).whileTrue(new ArmDown(armSubsystem, true)); 
-    new JoystickButton(xbox1, 5).whileFalse(new ArmDown(armSubsystem, false)); 
-    // delivery on, button 6 (RB), driver 2
+    // Intake on, button 6 (RB), driver 1
+    // Climber up, button 12 (RT), driver 1
+    // Climber down, button 11 (LT), driver 1
+    // Arm up, button 4 (Y), driver 2
+    new JoystickButton(xbox1, 4).whileTrue(new ArmUp(armSubsystem, true)); 
+    new JoystickButton(xbox1, 4).whileFalse(new ArmUp(armSubsystem, false)); 
+    // Arm down, button 1 (A), driver 2
+    new JoystickButton(xbox1, 1).whileTrue(new ArmDown(armSubsystem, true)); 
+    new JoystickButton(xbox1, 1).whileFalse(new ArmDown(armSubsystem, false)); 
+    // Delivery on, button 6 (RB), driver 2
   }
 
   /**
