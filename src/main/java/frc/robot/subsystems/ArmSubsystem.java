@@ -6,11 +6,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ArmSubsystem extends SubsystemBase {
-  static PWMTalonSRX armMotor = new PWMTalonSRX(Constants.armMotorChannel);
+  static Spark armMotor = new Spark(Constants.armMotorChannel);
   public static DigitalInput topArmLimitSwitch = new DigitalInput(Constants.topArmLimitSwitchChannel);
   public static DigitalInput bottomArmLimitSwitch = new DigitalInput(Constants.bottomArmLimitSwitchChannel);
   /** Creates a new ArmSubsystem. */

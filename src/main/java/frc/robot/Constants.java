@@ -15,15 +15,14 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double DEFAULT_SPEED = 1000.0;
-    public static final int fowardChannel = 1;
-    public static final int reverseChannel = 0;
+  public static final double DEFAULT_SPEED = 1000.0;
 
-  //This is the arm motor
-  public static final int armCanControllerID = 2;
-    public static final int topArmLimitSwitchChannel = 1;
-    public static final int bottomArmLimitSwitchChannel = 1;
-    public static final int armMotorChannel = 0;
+  public static final int deliveryMotorId = 2;
+  
+  //arm PWM channels
+  public static final int topArmLimitSwitchChannel = 1;
+  public static final int bottomArmLimitSwitchChannel = 1;
+  public static final int armMotorChannel = 0;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;
