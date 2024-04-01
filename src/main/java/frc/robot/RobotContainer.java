@@ -7,9 +7,15 @@ package frc.robot;
 
 import frc.robot.commands.Auto.AutoSwerveDrive;
 import frc.robot.commands.Auto.AutoSwerveTurn;
-import frc.robot.commands.Swerve.SwerveBreak;
+import frc.robot.commands.Swerve.SwerveBrake;
 import frc.robot.commands.Swerve.SwerveCalibrate;
 import frc.robot.commands.Swerve.SwerveDriveCommand;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.ArmDown;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.DeliverySubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Swerve.SwerveDriveTrain;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,8 +34,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
       private static final XboxController xbox1 = new XboxController(0);
+      private static final XboxController xbox2 = new XboxController(1);
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
+      private final ArmSubsystem armSubsystem = new ArmSubsystem();
+      private final DeliverySubsystem deliverySubsystem = new DeliverySubsystem();
+      private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+      private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -46,9 +57,20 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
+  // Driver 2 controls arm up and down, delivery
   private void configureBindings() {
-    driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1));
-    new JoystickButton(xbox1, 5).whileTrue(new SwerveBreak(driveTrain));
+    // swerve drive, driver 1
+    driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
+    // brake swerve, button 5 (LB), driver 1
+    new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
+    // intake on, button 6 (RB), driver 1
+    // climber up, button 12 (RT), driver 1
+    // climber down, button 11 (LT), driver 1
+    // arm up, button 6 (RB), driver 2
+    new JoystickButton(xbox1, 6).whileTrue(new ArmUp(armSubsystem, true)); 
+    new JoystickButton(xbox1, 6).whileFalse(new ArmUp(armSubsystem, false)); 
+    // arm down, button 5 (LB), driver 2
+    // delivery on, button 6 (RB), driver 2
   }
 
   /**

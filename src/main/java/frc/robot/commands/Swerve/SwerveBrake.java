@@ -7,11 +7,11 @@ package frc.robot.commands.Swerve;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Swerve.SwerveDriveTrain;
 
-public class SwerveBreak extends Command {
+public class SwerveBrake extends Command {
   private final SwerveDriveTrain m_swerveDriveTrain;
 
-  /** Creates a new SwerveBreak. */
-  public SwerveBreak(final SwerveDriveTrain swerveDriveTrain) {
+  /** Creates a new SwerveBrake. */
+  public SwerveBrake(final SwerveDriveTrain swerveDriveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_swerveDriveTrain = swerveDriveTrain;
     addRequirements(swerveDriveTrain);

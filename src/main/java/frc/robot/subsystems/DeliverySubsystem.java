@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class DeliverySubsystem extends SubsystemBase {
-  static CANSparkMax deliveryMotor = new CANSparkMax(Constants.deliveryMotorId, MotorType.kBrushless);
+  static CANSparkMax deliveryMotor = new CANSparkMax(Constants.deliveryMotorID, MotorType.kBrushless);
   // put sensor here later senorse :]
 
   /** Creates a new DeliverySubsystem. */
