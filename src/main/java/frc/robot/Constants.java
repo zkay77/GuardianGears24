@@ -20,9 +20,9 @@ public final class Constants {
   public static final int deliveryMotorID = 2;
 
   //arm PWM channels
+  public static final int armMotorID = 10;
   public static final int topArmLimitSwitchChannel = 1;
   public static final int bottomArmLimitSwitchChannel = 1;
-  public static final int armMotorID = 0;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;
@@ -31,24 +31,24 @@ public final class Constants {
   public static double backRightOffset = 92;
 
   //set CAN ids for every module
-  public static final int frontLeftDriveID = 10; 
-  public static final int frontLeftCANCoderID = 5; 
-  public static final int frontLeftSteerID = 9; 
+  public static final int frontLeftDriveID = 2; 
+  public static final int frontLeftCANCoderID = 1; 
+  public static final int frontLeftSteerID = 3; 
   public static final boolean frontLeftInverted = false;
   //put your can ID's here! 
-  public static final int frontRightDriveID = 8; 
-  public static final int frontRightCANCoderID = 6; 
-  public static final int frontRightSteerID = 7; 
+  public static final int frontRightDriveID = 4; 
+  public static final int frontRightCANCoderID = 2; 
+  public static final int frontRightSteerID = 5; 
   public static final boolean frontRightInverted = false;
   //put your can ID's here! 
-  public static final int backLeftDriveID = 12; 
-  public static final int backLeftCANCoderID = 4; 
-  public static final int backLeftSteerID = 11; 
+  public static final int backLeftDriveID = 6; 
+  public static final int backLeftCANCoderID = 3; 
+  public static final int backLeftSteerID = 7; 
   public static final boolean backLeftInverted = false;
   //put your can ID's here! 
-  public static final int backRightDriveID = 14; 
-  public static final int backRightCANCoderID = 3; 
-  public static final int backRightSteerID = 13; 
+  public static final int backRightDriveID = 8; 
+  public static final int backRightCANCoderID = 4; 
+  public static final int backRightSteerID = 9; 
   public static final boolean backRightInverted = false;
 
   //set constants: max speed, max angle speed, field calibration 
