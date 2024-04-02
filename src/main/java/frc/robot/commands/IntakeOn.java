@@ -4,42 +4,40 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class ArmDown extends Command {
-  private final ArmSubsystem armSubsystem;
+public class IntakeOn extends Command {
+  private final IntakeSubsystem intakeSubsystem;
   boolean isPressed;
 
-  /** Creates a new ArmDown. */
-  public ArmDown(ArmSubsystem armSubsystem, boolean isPressed) {
-    this.armSubsystem = armSubsystem;
+  /** Creates a new IntakeOn. */
+  public IntakeOn(IntakeSubsystem intakeSubsystem, boolean isPressed) {
+    this.intakeSubsystem = intakeSubsystem;
     this.isPressed = isPressed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(armSubsystem);
+    addRequirements(intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (isPressed){
-      armSubsystem.spinMotor(-.2);
+    if(isPressed){
+      intakeSubsystem.spinMotors(.12);
     }
-    else {
-      armSubsystem.spinMotor(0);
+    else{
+      intakeSubsystem.spinMotors(0);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    armSubsystem.spinMotor(0);
+    intakeSubsystem.spinMotors(0);
   }
 
   // Returns true when the command should end.

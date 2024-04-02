@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
@@ -7,7 +8,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class DeliverySubsystem extends SubsystemBase {
   static CANSparkMax deliveryMotor = new CANSparkMax(Constants.deliveryMotorID, MotorType.kBrushless);
-  // put sensor here later senorse :]
+  public static DigitalInput deliverySensorIn = new DigitalInput(Constants.deliverySensorInChannel);
+  public static DigitalInput deliverySensorOut = new DigitalInput(Constants.deliverySensorOutChannel);
 
   /** Creates a new DeliverySubsystem. */
   public DeliverySubsystem() {
@@ -19,14 +21,8 @@ public class DeliverySubsystem extends SubsystemBase {
 
   }
 
-public void spinMotor(double speed){
+  public void spinMotor(double speed){
     deliveryMotor.set(speed);
   }
-  
-public static void turnOnMotor(double speed){
-  deliveryMotor.set(speed);
-  }
-
-
 }
 

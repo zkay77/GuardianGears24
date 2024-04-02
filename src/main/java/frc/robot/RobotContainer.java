@@ -12,6 +12,9 @@ import frc.robot.commands.Swerve.SwerveCalibrate;
 import frc.robot.commands.Swerve.SwerveDriveCommand;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
+import frc.robot.commands.DeliveryIn;
+import frc.robot.commands.DeliveryOut;
+import frc.robot.commands.IntakeOn;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DeliverySubsystem;
@@ -57,13 +60,15 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  // Driver 2 controls arm up and down, delivery
+
   private void configureBindings() {
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
     // Brake swerve, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
     // Intake on, button 6 (RB), driver 1
+    new JoystickButton(xbox1, 6).whileTrue(new IntakeOn(intakeSubsystem, true)); 
+    new JoystickButton(xbox1, 6).whileFalse(new IntakeOn(intakeSubsystem, false)); 
     // Climber up, button 12 (RT), driver 1
     // Climber down, button 11 (LT), driver 1
     // Arm up, button 4 (Y), driver 2
@@ -72,7 +77,12 @@ public class RobotContainer {
     // Arm down, button 1 (A), driver 2
     new JoystickButton(xbox1, 1).whileTrue(new ArmDown(armSubsystem, true)); 
     new JoystickButton(xbox1, 1).whileFalse(new ArmDown(armSubsystem, false)); 
-    // Delivery on, button 6 (RB), driver 2
+    // Delivery out, button 2 (B), driver 2
+    new JoystickButton(xbox1, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
+    new JoystickButton(xbox1, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
+    // Delivery in, button 3 (X), driver 2
+    new JoystickButton(xbox1, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
+    new JoystickButton(xbox1, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
   }
 
   /**

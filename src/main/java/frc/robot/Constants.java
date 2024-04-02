@@ -17,12 +17,15 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static final double DEFAULT_SPEED = 1000.0;
 
-  public static final int deliveryMotorID = 2;
-
   //CAN IDs and PWM channels
   public static final int armMotorID = 10;
-  public static final int topArmLimitSwitchChannel = 1;
-  public static final int bottomArmLimitSwitchChannel = 1;
+  public static final int topArmLimitSwitchChannel = 4;
+  public static final int bottomArmLimitSwitchChannel = 3;
+  public static final int deliveryMotorID = 11;
+  public static final int deliverySensorInChannel = 2;
+  public static final int deliverySensorOutChannel = 1;
+  public static final int leftIntakeMotor = 12;
+  public static final int rightIntakeMotor = 13;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;
