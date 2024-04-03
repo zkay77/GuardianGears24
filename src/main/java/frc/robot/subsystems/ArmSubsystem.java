@@ -22,11 +22,27 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public void spinMotor(double speed){
-    armMotor.set(speed);
-  }
+    if (speed > 0) {
+        if (topArmLimitSwitch.get()) {
+            // We are going up and top limit is tripped so stop
+            armMotor.set(0);
+        } else {
+            // We are going up but top limit is not tripped so go at commanded speed
+            armMotor.set(speed);
+        }
+    } else {
+        if (bottomArmLimitSwitch.get()) {
+            // We are going down and bottom limit is tripped so stop
+            armMotor.set(0);
+        } else {
+            // We are going down but bottom limit is not tripped so go at commanded speed
+            armMotor.set(speed);
+        }
+    }
+    }
 
   @Override
   public void periodic(){ // This method will be called once per scheduler run
 
-  }
+    }
 }
