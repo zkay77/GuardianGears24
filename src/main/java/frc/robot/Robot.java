@@ -8,8 +8,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-//import frc.robot.subsystems.ArmSubsystem;
-//import frc.robot.subsystems.PneumaticsSubsystem;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,10 +21,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
+  private UsbCamera Camera1;
+  private UsbCamera camera2;
   
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -33,6 +35,25 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    try{
+      Camera1 = CameraServer.startAutomaticCapture(0);
+      CvSink cvSink1 = CameraServer.getVideo();
+      CvSource outputStream1 = CameraServer.putVideo("Camera High", 160,  120);
+
+    }
+    catch(Exception e1){
+      System.err.println("Camera 1 failed");
+    }
+ 
+    try{
+      final UsbCamera camera2 = CameraServer.startAutomaticCapture(0);
+      CvSink cvSink2 = CameraServer.getVideo();
+      CvSource outputStream2 = CameraServer.putVideo("Camera Low", 160,  120);
+
+    }
+    catch(Exception e2){
+      System.err.println("Camera 2 failed");
+    }
   }
 
   /**

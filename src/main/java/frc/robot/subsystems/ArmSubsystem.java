@@ -17,32 +17,34 @@ public class ArmSubsystem extends SubsystemBase {
   public static DigitalInput topArmLimitSwitch = new DigitalInput(Constants.topArmLimitSwitchChannel);
   public static DigitalInput bottomArmLimitSwitch = new DigitalInput(Constants.bottomArmLimitSwitchChannel);
   /** Creates a new ArmSubsystem. */
-  public ArmSubsystem() {
-
-  }
+  public ArmSubsystem() {}
 
   public void spinMotor(double speed){
-    if (speed > 0) {
-        if (topArmLimitSwitch.get()) {
-            // We are going up and top limit is tripped so stop
+    // If arm is moving up (speed greater than zero):
+    if(speed > 0) {
+      // if top limit switch is pressed (true): set speed to zero
+        if(topArmLimitSwitch.get()) {
             armMotor.set(0);
-        } else {
-            // We are going up but top limit is not tripped so go at commanded speed
+        } 
+      // if not, set to speed
+        else {
             armMotor.set(speed);
         }
+    // If arm is moving down (speed less than zero):
     } else {
+      // if bottom limit switch is pressed (true): set speed to zero
         if (bottomArmLimitSwitch.get()) {
-            // We are going down and bottom limit is tripped so stop
             armMotor.set(0);
-        } else {
-            // We are going down but bottom limit is not tripped so go at commanded speed
+        } 
+      // if not, set to speed
+        else {
             armMotor.set(speed);
         }
     }
-    }
+  }
 
   @Override
   public void periodic(){ // This method will be called once per scheduler run
 
-    }
+  }
 }
