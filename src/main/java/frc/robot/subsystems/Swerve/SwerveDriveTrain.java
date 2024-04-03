@@ -67,7 +67,7 @@ public class SwerveDriveTrain extends SubsystemBase {
   }
 
   //Drive method 
-  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean calibrateGyro, boolean isCoast) {
+  public void drive(double xSpeed, double ySpeed, double rotation, boolean fieldRelative, boolean calibrateGyro, boolean isCoast) {
 
     if(isCoast){
       this.m_isCoast = true;
@@ -75,12 +75,11 @@ public class SwerveDriveTrain extends SubsystemBase {
       this.m_isCoast = false;
     }
 
-
     if(calibrateGyro){
       gyro.reset(); // recalibrates gyro offset 
     } 
-                                                                                      //Rotation2d.fromDegrees(-gyro.getAngle())
-    SwerveModuleState[] states = kinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, Rotation2d.fromDegrees(-gyro.getAngle())) : new ChassisSpeeds(xSpeed, ySpeed, rot)); 
+    // if fieldRelative is true, use speed and rotation from gyro
+    SwerveModuleState[] states = kinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rotation, Rotation2d.fromDegrees(-gyro.getAngle())) : new ChassisSpeeds(xSpeed, ySpeed, rotation)); 
 
     SwerveDriveKinematics.desaturateWheelSpeeds(states, Constants.kMaxSpeed); 
 
@@ -96,7 +95,7 @@ public class SwerveDriveTrain extends SubsystemBase {
       SmartDashboard.putNumber("gyro Q Z", gyro.getQuaternionZ());
       SmartDashboard.putNumber("xSpeed", xSpeed);
       SmartDashboard.putNumber("ySpeed", ySpeed);
-      SmartDashboard.putNumber("rotation", rot);
+      SmartDashboard.putNumber("rotation", rotation);
     }
   }
 
