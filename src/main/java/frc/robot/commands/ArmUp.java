@@ -4,15 +4,15 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ArmSubsystem;
 
-public class ArmDown extends Command {
+public class ArmUp extends Command {
   private final ArmSubsystem armSubsystem;
   boolean isPressed;
 
-  /** Creates a new ArmDown. */
-  public ArmDown(ArmSubsystem armSubsystem, boolean isPressed) {
+  /** Creates a new ArmUp. */
+  public ArmUp(ArmSubsystem armSubsystem, boolean isPressed) {
     this.armSubsystem = armSubsystem;
     this.isPressed = isPressed;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,7 +29,7 @@ public class ArmDown extends Command {
   @Override
   public void execute() {
     if (isPressed){
-      armSubsystem.spinMotor(-.2);
+      armSubsystem.spinMotor(.2);
     }
     else {
       armSubsystem.spinMotor(0);
