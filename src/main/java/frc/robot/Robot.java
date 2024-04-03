@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.UsbCamera;
 
 /**
@@ -22,7 +20,7 @@ import edu.wpi.first.cscore.UsbCamera;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  private UsbCamera Camera1;
+  private UsbCamera camera1;
   private UsbCamera camera2;
   
   /**
@@ -36,19 +34,14 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     try{
-      Camera1 = CameraServer.startAutomaticCapture(0);
-      CvSink cvSink1 = CameraServer.getVideo();
-      CvSource outputStream1 = CameraServer.putVideo("Camera High", 160,  120);
-
+      camera1 = CameraServer.startAutomaticCapture(0);
     }
     catch(Exception e1){
       System.err.println("Camera 1 failed");
     }
  
     try{
-      final UsbCamera camera2 = CameraServer.startAutomaticCapture(0);
-      CvSink cvSink2 = CameraServer.getVideo();
-      CvSource outputStream2 = CameraServer.putVideo("Camera Low", 160,  120);
+      camera2 = CameraServer.startAutomaticCapture(1);
 
     }
     catch(Exception e2){
