@@ -11,8 +11,8 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
-  static CANSparkMax leftIntakeMotor = new CANSparkMax(Constants.leftIntakeMotor, MotorType.kBrushless);
-  static CANSparkMax rightIntakeMotor = new CANSparkMax(Constants.rightIntakeMotor, MotorType.kBrushless);
+  static CANSparkMax leftIntakeMotor = new CANSparkMax(Constants.leftIntakeMotorID, MotorType.kBrushless);
+  static CANSparkMax rightIntakeMotor = new CANSparkMax(Constants.rightIntakeMotorID, MotorType.kBrushless);
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {}
 

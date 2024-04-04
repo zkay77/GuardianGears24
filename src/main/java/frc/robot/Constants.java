@@ -18,14 +18,14 @@ public final class Constants {
   public static final double DEFAULT_SPEED = 1000.0;
 
   //CAN IDs and PWM channels
-  public static final int armMotorID = 10;
-  public static final int topArmLimitSwitchChannel = 4;
-  public static final int bottomArmLimitSwitchChannel = 3;
-  public static final int deliveryMotorID = 11;
-  public static final int deliverySensorInChannel = 2;
-  public static final int deliverySensorOutChannel = 1;
-  public static final int leftIntakeMotor = 12;
-  public static final int rightIntakeMotor = 13;
+  public static final int armMotorID = 13;
+  public static final int deliveryMotorID = 14;
+  public static final int leftIntakeMotorID = 15;
+  public static final int rightIntakeMotorID = 16;
+  public static final int deliverySensorInChannel = 1;
+  public static final int deliverySensorOutChannel = 2;
+  public static final int topArmLimitSwitchChannel = 3;
+  public static final int bottomArmLimitSwitchChannel = 4;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;
@@ -34,24 +34,24 @@ public final class Constants {
   public static double backRightOffset = 92;
 
   //set CAN ids for every module
-  public static final int frontLeftDriveID = 2; 
+  public static final int frontLeftDriveID = 5; 
   public static final int frontLeftCANCoderID = 1; 
-  public static final int frontLeftSteerID = 3; 
+  public static final int frontLeftSteerID = 6; 
   public static final boolean frontLeftInverted = false;
   //put your can ID's here! 
-  public static final int frontRightDriveID = 4; 
+  public static final int frontRightDriveID = 7; 
   public static final int frontRightCANCoderID = 2; 
-  public static final int frontRightSteerID = 5; 
+  public static final int frontRightSteerID = 8; 
   public static final boolean frontRightInverted = false;
   //put your can ID's here! 
-  public static final int backLeftDriveID = 6; 
+  public static final int backLeftDriveID = 9; 
   public static final int backLeftCANCoderID = 3; 
-  public static final int backLeftSteerID = 7; 
+  public static final int backLeftSteerID = 10; 
   public static final boolean backLeftInverted = false;
   //put your can ID's here! 
-  public static final int backRightDriveID = 8; 
+  public static final int backRightDriveID = 11; 
   public static final int backRightCANCoderID = 4; 
-  public static final int backRightSteerID = 9; 
+  public static final int backRightSteerID = 12; 
   public static final boolean backRightInverted = false;
 
   //set constants: max speed, max angle speed, field calibration 

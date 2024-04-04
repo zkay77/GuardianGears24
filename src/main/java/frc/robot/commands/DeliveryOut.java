@@ -27,7 +27,7 @@ public class DeliveryOut extends Command {
   @Override
   public void execute() {
   if(DeliverySubsystem.deliverySensorIn.get() && DeliverySubsystem.deliverySensorOut.get() && isPressed){
-    deliverySubsystem.spinMotor(1);
+    deliverySubsystem.spinMotor(-1);
     }
   else{
     deliverySubsystem.spinMotor(0);
