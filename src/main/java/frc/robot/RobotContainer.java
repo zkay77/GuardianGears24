@@ -64,9 +64,11 @@ public class RobotContainer {
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
     // Brake swerve, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
-    // Intake on, button 6 (RB), driver 1
-    new JoystickButton(xbox1, 6).whileTrue(new IntakeOn(intakeSubsystem, true)); 
-    new JoystickButton(xbox1, 6).whileFalse(new IntakeOn(intakeSubsystem, false)); 
+    // Calibrate gyro, button 6 (RB), driver 1
+    new JoystickButton(xbox1, 6).whileTrue(new SwerveCalibrate(driveTrain));
+    // Intake on, button 12 (RT), driver 1
+    new JoystickButton(xbox1, 12).whileTrue(new IntakeOn(intakeSubsystem, true)); 
+    new JoystickButton(xbox1, 12).whileFalse(new IntakeOn(intakeSubsystem, false)); 
     // Arm up, button 4 (Y), driver 2
     new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem, true)); 
     new JoystickButton(xbox2, 4).whileFalse(new ArmUp(armSubsystem, false)); 
