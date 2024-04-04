@@ -16,7 +16,6 @@ import frc.robot.commands.DeliveryIn;
 import frc.robot.commands.DeliveryOut;
 import frc.robot.commands.IntakeOn;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DeliverySubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Swerve.SwerveDriveTrain;
@@ -43,7 +42,6 @@ public class RobotContainer {
       private final ArmSubsystem armSubsystem = new ArmSubsystem();
       private final DeliverySubsystem deliverySubsystem = new DeliverySubsystem();
       private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-      private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -69,20 +67,18 @@ public class RobotContainer {
     // Intake on, button 6 (RB), driver 1
     new JoystickButton(xbox1, 6).whileTrue(new IntakeOn(intakeSubsystem, true)); 
     new JoystickButton(xbox1, 6).whileFalse(new IntakeOn(intakeSubsystem, false)); 
-    // Climber up, button 12 (RT), driver 1
-    // Climber down, button 11 (LT), driver 1
     // Arm up, button 4 (Y), driver 2
-    new JoystickButton(xbox1, 4).whileTrue(new ArmUp(armSubsystem, true)); 
-    new JoystickButton(xbox1, 4).whileFalse(new ArmUp(armSubsystem, false)); 
+    new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem, true)); 
+    new JoystickButton(xbox2, 4).whileFalse(new ArmUp(armSubsystem, false)); 
     // Arm down, button 1 (A), driver 2
-    new JoystickButton(xbox1, 1).whileTrue(new ArmDown(armSubsystem, true)); 
-    new JoystickButton(xbox1, 1).whileFalse(new ArmDown(armSubsystem, false)); 
+    new JoystickButton(xbox2, 1).whileTrue(new ArmDown(armSubsystem, true)); 
+    new JoystickButton(xbox2, 1).whileFalse(new ArmDown(armSubsystem, false)); 
     // Delivery out, button 2 (B), driver 2
-    new JoystickButton(xbox1, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
-    new JoystickButton(xbox1, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
+    new JoystickButton(xbox2, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
+    new JoystickButton(xbox2, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
     // Delivery in, button 3 (X), driver 2
-    new JoystickButton(xbox1, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
-    new JoystickButton(xbox1, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
+    new JoystickButton(xbox2, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
+    new JoystickButton(xbox2, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
   }
 
   /**
