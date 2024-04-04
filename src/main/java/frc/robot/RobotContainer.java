@@ -7,6 +7,9 @@ package frc.robot;
 
 import frc.robot.commands.Auto.AutoSwerveDrive;
 import frc.robot.commands.Auto.AutoSwerveTurn;
+import frc.robot.commands.Auto.AutoIntakeOn;
+import frc.robot.commands.Auto.AutoDelivery;
+import frc.robot.commands.Auto.AutoMoveArm;
 import frc.robot.commands.Swerve.SwerveBrake;
 import frc.robot.commands.Swerve.SwerveCalibrate;
 import frc.robot.commands.Swerve.SwerveDriveCommand;
@@ -89,21 +92,33 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return Commands.sequence(AutoDrive(-.10), AutoTurn(.18), AutoCalibrate());
+    return Commands.sequence(AutoDrive(-.10, .5), AutoTurn(.18, 1.7), AutoCalibrate());
   }
 
-  public Command AutoTurn(double speed){// numbers on board
-    return new AutoSwerveTurn(driveTrain, speed).withTimeout(1.7)
+  public Command AutoTurn(double speed, double seconds){// numbers on board
+    return new AutoSwerveTurn(driveTrain, speed).withTimeout(seconds)
     .andThen(new WaitCommand(.25));
   }
 
-  public Command AutoDrive(double speed){
-    return new AutoSwerveDrive(driveTrain, speed).withTimeout(.5)
+  public Command AutoDrive(double speed, double seconds){
+    return new AutoSwerveDrive(driveTrain, speed).withTimeout(seconds)
     .andThen(new WaitCommand(.25));
   }
 
   public Command AutoCalibrate(){
     return new SwerveCalibrate(driveTrain);
+  }
+
+  public Command AutoIntakeOn(double seconds){
+    return new AutoIntakeOn(intakeSubsystem, .12).withTimeout(seconds);
+  }
+
+  public Command AutoMoveArm(double speed){
+    return new AutoMoveArm(armSubsystem, speed).withTimeout(1);
+  }
+
+  public Command AutoDelivery(double speed, double seconds){
+    return new AutoDelivery(deliverySubsystem, .12).withTimeout(seconds);
   }
 
   public static double getLeftYPower(){
