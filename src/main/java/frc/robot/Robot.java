@@ -20,8 +20,6 @@ import edu.wpi.first.cscore.UsbCamera;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  private UsbCamera camera1;
-  private UsbCamera camera2;
   
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,14 +32,14 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     try{
-      camera1 = CameraServer.startAutomaticCapture(0);
+      CameraServer.startAutomaticCapture(0);
     }
     catch(Exception e1){
       System.err.println("Camera 1 failed");
     }
  
     try{
-      camera2 = CameraServer.startAutomaticCapture(1);
+      CameraServer.startAutomaticCapture(1);
 
     }
     catch(Exception e2){
