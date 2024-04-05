@@ -52,9 +52,10 @@ public class SwerveDriveCommand extends Command {
 
     //set calibration type (self / field)
     boolean calibrate = xbox.getRightBumper();
+    boolean fieldRelative = xbox.getLeftBumperReleased();
 
     //drive method
-    driveTrain.drive(xSpeed, ySpeed, rot, Constants.fieldRelative, calibrate, true);
+    driveTrain.drive(xSpeed, ySpeed, rot, fieldRelative, calibrate, true);
 
   }
 

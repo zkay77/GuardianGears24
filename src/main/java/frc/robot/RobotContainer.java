@@ -65,11 +65,12 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
-    // (In SwerveDriveCommand line 54) Calibrate gyro, button 6 (RB), driver 1
+    // (In SwerveDriveCommand line 54) Calibrate gyro, RB
+    // (In SwerveDriveCommand line 55) Set fieldRelative to false, LB
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // Brake swerve, button 5 (LB), driver 1
-    new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
+    // Brake swerve, button 11 (LT), driver 1
+    new JoystickButton(xbox1, 11).whileTrue(new SwerveBrake(driveTrain)); 
     // Intake on, button 12 (RT), driver 1
     new JoystickButton(xbox1, 12).whileTrue(new IntakeOn(intakeSubsystem, true));
     new JoystickButton(xbox1, 12).whileFalse(new IntakeOn(intakeSubsystem, false)); 
