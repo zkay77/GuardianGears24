@@ -10,7 +10,7 @@ import frc.robot.subsystems.Swerve.SwerveDriveTrain;
 public class SwerveCalibrate extends Command {
   private final SwerveDriveTrain m_swerveDriveTrain;
 
-  /** Creates a new SwerveBreak. */
+  /** Creates a new SwerveCalibrate. */
   public SwerveCalibrate(final SwerveDriveTrain swerveDriveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_swerveDriveTrain = swerveDriveTrain;

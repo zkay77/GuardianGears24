@@ -92,10 +92,11 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+  // set sequence of autonomous methods
   public Command getAutonomousCommand() {
     return Commands.sequence(AutoDrive(-.10, .5), AutoTurn(.18, 1.7), AutoCalibrate());
   }
-
+  // set autonomous methods
   public Command AutoTurn(double speed, double seconds){// numbers on board
     return new AutoSwerveTurn(driveTrain, speed).withTimeout(seconds)
     .andThen(new WaitCommand(.25));
@@ -118,7 +119,7 @@ public class RobotContainer {
     return new AutoMoveArm(armSubsystem, speed).withTimeout(1);
   }
 
-  public Command AutoDelivery(double speed, double seconds){
+  public Command AutoDelivery(double seconds){
     return new AutoDelivery(deliverySubsystem, .12).withTimeout(seconds);
   }
 
