@@ -29,7 +29,7 @@ public class ArmUp extends Command {
   @Override
   public void execute() {
     if (isPressed){
-      armSubsystem.spinMotor(.2);
+      armSubsystem.spinMotor(.7);
     }
     else {
       armSubsystem.spinMotor(0);

@@ -7,11 +7,11 @@ package frc.robot;
 
 import frc.robot.commands.Auto.AutoSwerveDrive;
 import frc.robot.commands.Auto.AutoSwerveTurn;
+import frc.robot.commands.Auto.SwerveCalibrate;
 import frc.robot.commands.Auto.AutoIntakeOn;
 import frc.robot.commands.Auto.AutoDelivery;
 import frc.robot.commands.Auto.AutoMoveArm;
 import frc.robot.commands.Swerve.SwerveBrake;
-import frc.robot.commands.Swerve.SwerveCalibrate;
 import frc.robot.commands.Swerve.SwerveDriveCommand;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
@@ -46,6 +46,8 @@ public class RobotContainer {
       private final DeliverySubsystem deliverySubsystem = new DeliverySubsystem();
       private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
+
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -63,27 +65,26 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
+    // (In SwerveDriveCommand line 54) Calibrate gyro, button 6 (RB), driver 1
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
     // Brake swerve, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
-    // Calibrate gyro, button 6 (RB), driver 1
-    new JoystickButton(xbox1, 6).whileTrue(new SwerveCalibrate(driveTrain));
     // Intake on, button 12 (RT), driver 1
-    new JoystickButton(xbox1, 12).whileTrue(new IntakeOn(intakeSubsystem, true)); 
+    new JoystickButton(xbox1, 12).whileTrue(new IntakeOn(intakeSubsystem, true));
     new JoystickButton(xbox1, 12).whileFalse(new IntakeOn(intakeSubsystem, false)); 
     // Arm up, button 4 (Y), driver 2
-    new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem, true)); 
-    new JoystickButton(xbox2, 4).whileFalse(new ArmUp(armSubsystem, false)); 
+    new JoystickButton(xbox1, 4).whileTrue(new ArmUp(armSubsystem, true)); 
+    new JoystickButton(xbox1, 4).whileFalse(new ArmUp(armSubsystem, false)); 
     // Arm down, button 1 (A), driver 2
-    new JoystickButton(xbox2, 1).whileTrue(new ArmDown(armSubsystem, true)); 
-    new JoystickButton(xbox2, 1).whileFalse(new ArmDown(armSubsystem, false)); 
+    new JoystickButton(xbox1, 1).whileTrue(new ArmDown(armSubsystem, true)); 
+    new JoystickButton(xbox1, 1).whileFalse(new ArmDown(armSubsystem, false)); 
     // Delivery out, button 2 (B), driver 2
-    new JoystickButton(xbox2, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
-    new JoystickButton(xbox2, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
+    new JoystickButton(xbox1, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
+    new JoystickButton(xbox1, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
     // Delivery in, button 3 (X), driver 2
-    new JoystickButton(xbox2, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
-    new JoystickButton(xbox2, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
+    new JoystickButton(xbox1, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
+    new JoystickButton(xbox1, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
   }
 
   /**

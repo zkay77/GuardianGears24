@@ -27,7 +27,7 @@ public class IntakeOn extends Command {
   @Override
   public void execute() {
     if(isPressed){
-      intakeSubsystem.spinMotors(.12);
+      intakeSubsystem.spinMotors(.5);
     }
     else{
       intakeSubsystem.spinMotors(0);

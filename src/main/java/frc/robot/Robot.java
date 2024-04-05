@@ -36,14 +36,6 @@ public class Robot extends TimedRobot {
     catch(Exception e1){
       System.err.println("Camera 1 failed");
     }
- 
-    try{
-      CameraServer.startAutomaticCapture(1);
-
-    }
-    catch(Exception e2){
-      System.err.println("Camera 2 failed");
-    }
   }
 
   /**
