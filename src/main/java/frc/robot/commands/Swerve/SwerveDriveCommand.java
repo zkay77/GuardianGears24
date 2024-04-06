@@ -51,7 +51,7 @@ public class SwerveDriveCommand extends Command {
     SmartDashboard.putNumber("RightXPower", RobotContainer.getRightXPower());
 
     //set calibration type (self / field)
-    boolean calibrate = xbox.getLeftStickButton();
+    boolean calibrate = xbox.getRightStickButton();
     //boolean fieldRelative = xbox.getRightStickButton();
 
     //drive method

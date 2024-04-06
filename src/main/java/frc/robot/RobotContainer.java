@@ -65,12 +65,12 @@ public class RobotContainer {
    */
 
   private void configureBindings() { // Triggers don't work because they use an axis value instead of a boolean
-    // (In SwerveDriveCommand line 54) Calibrate gyro, LB
-    // (In SwerveDriveCommand line 55) Set fieldRelative to false, LB
+    // (In SwerveDriveCommand line 54) Calibrate gyro, R3
+    // (In SwerveDriveCommand line 55) Set fieldRelative to false
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // Brake swerve, button 3 (X), driver 1
-    new JoystickButton(xbox1, 3).whileTrue(new SwerveBrake(driveTrain)); 
+    // Brake swerve, button 9 (L3), driver 1
+    new JoystickButton(xbox1, 9).whileTrue(new SwerveBrake(driveTrain)); 
     // Intake in, button 6 (RB), driver 1
     new JoystickButton(xbox1, 6).whileTrue(new IntakeIn(intakeSubsystem));
     // Intake out, button 5 (LB), driver 1
