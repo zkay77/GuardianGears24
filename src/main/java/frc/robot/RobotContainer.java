@@ -39,14 +39,12 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
       private static final XboxController xbox1 = new XboxController(0);
-      //private static final XboxController xbox2 = new XboxController(1);
+      private static final XboxController xbox2 = new XboxController(1);
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
       private final ArmSubsystem armSubsystem = new ArmSubsystem();
       private final DeliverySubsystem deliverySubsystem = new DeliverySubsystem();
       private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-
-
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -65,27 +63,22 @@ public class RobotContainer {
    */
 
   private void configureBindings() {
-    // (In SwerveDriveCommand line 54) Calibrate gyro, RB
+    // (In SwerveDriveCommand line 54) Calibrate gyro, LB
     // (In SwerveDriveCommand line 55) Set fieldRelative to false, LB
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // Brake swerve, button 11 (LT), driver 1
-    new JoystickButton(xbox1, 11).whileTrue(new SwerveBrake(driveTrain)); 
-    // Intake on, button 12 (RT), driver 1
-    new JoystickButton(xbox1, 12).whileTrue(new IntakeOn(intakeSubsystem, true));
-    new JoystickButton(xbox1, 12).whileFalse(new IntakeOn(intakeSubsystem, false)); 
+    // Brake swerve, button 5 (LB), driver 1
+    new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
+    // Intake on, button 6 (RB), driver 1
+    new JoystickButton(xbox1, 6).whileTrue(new IntakeOn(intakeSubsystem));
     // Arm up, button 4 (Y), driver 2
-    new JoystickButton(xbox1, 4).whileTrue(new ArmUp(armSubsystem, true)); 
-    new JoystickButton(xbox1, 4).whileFalse(new ArmUp(armSubsystem, false)); 
+    new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem)); 
     // Arm down, button 1 (A), driver 2
-    new JoystickButton(xbox1, 1).whileTrue(new ArmDown(armSubsystem, true)); 
-    new JoystickButton(xbox1, 1).whileFalse(new ArmDown(armSubsystem, false)); 
+    new JoystickButton(xbox2, 1).whileTrue(new ArmDown(armSubsystem)); 
     // Delivery out, button 2 (B), driver 2
-    new JoystickButton(xbox1, 2).whileTrue(new DeliveryOut(deliverySubsystem, true)); 
-    new JoystickButton(xbox1, 2).whileFalse(new DeliveryOut(deliverySubsystem, false)); 
+    new JoystickButton(xbox2, 2).whileTrue(new DeliveryOut(deliverySubsystem)); 
     // Delivery in, button 3 (X), driver 2
-    new JoystickButton(xbox1, 3).whileTrue(new DeliveryIn(deliverySubsystem, true)); 
-    new JoystickButton(xbox1, 3).whileFalse(new DeliveryIn(deliverySubsystem, false)); 
+    new JoystickButton(xbox2, 3).whileTrue(new DeliveryIn(deliverySubsystem)); 
   }
 
   /**
@@ -95,7 +88,8 @@ public class RobotContainer {
    */
   // set sequence of autonomous methods
   public Command getAutonomousCommand() {
-    return Commands.sequence(AutoDrive(-.10, .5), AutoTurn(.18, 1.7), AutoCalibrate());
+    return Commands.sequence(AutoDrive(.10, 2));
+    //return Commands.sequence(AutoIntakeOn(2), AutoMoveArm(.7), AutoDelivery(1));
   }
   // set autonomous methods
   public Command AutoTurn(double speed, double seconds){// numbers on board

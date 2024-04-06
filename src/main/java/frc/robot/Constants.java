@@ -22,10 +22,10 @@ public final class Constants {
   public static final int deliveryMotorID = 14;
   public static final int leftIntakeMotorID = 15;
   public static final int rightIntakeMotorID = 16;
-  public static final int deliverySensorInChannel = 1;
-  public static final int deliverySensorOutChannel = 2;
-  public static final int topArmLimitSwitchChannel = 3;
-  public static final int bottomArmLimitSwitchChannel = 4;
+  public static final int deliverySensorInChannel = 2;
+  public static final int deliverySensorOutChannel = 3;
+  public static final int upArmLimitSwitchChannel = 1;
+  public static final int downArmLimitSwitchChannel = 4;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;
@@ -58,7 +58,7 @@ public final class Constants {
   public static final double kMaxSpeed = Units.feetToMeters(3.6); // 1 feet per second 
   public static final double kMaxAngularSpeed = Math.PI; // 1/2 rotation per second 
   public static double feildCalibration = 0; 
-  public static boolean fieldRelative = true;
+  public static boolean fieldRelative = false;
 
   public static final double DEAD_ZONE = 0.1;
 
