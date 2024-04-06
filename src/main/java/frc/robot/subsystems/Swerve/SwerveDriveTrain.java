@@ -13,7 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState; 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; 
 import edu.wpi.first.math.util.Units;  
 import com.kauailabs.navx.frc.AHRS; 
 import edu.wpi.first.wpilibj.SPI; 
@@ -86,9 +86,10 @@ public class SwerveDriveTrain extends SubsystemBase {
     for(int i = 0; i < states.length; i++) { 
       SwerveModuleMK3 module = modules[i]; 
       SwerveModuleState state = states[i]; 
-      SmartDashboard.putNumber("Module " + String.valueOf(i) + " RawAngle", module.getRawAngle()); 
+      //SmartDashboard.putNumber("Module " + String.valueOf(i) + " RawAngle", module.getRawAngle()); 
       //below is a line to comment out from step 5 
       module.setDesiredState(state); 
+      /*
       SmartDashboard.putNumber("gyro Angle", gyro.getAngle());
       SmartDashboard.putNumber("gyro Q X", gyro.getQuaternionX());
       SmartDashboard.putNumber("gyro Q Y", gyro.getQuaternionY());
@@ -96,6 +97,7 @@ public class SwerveDriveTrain extends SubsystemBase {
       SmartDashboard.putNumber("xSpeed", xSpeed);
       SmartDashboard.putNumber("ySpeed", ySpeed);
       SmartDashboard.putNumber("rotation", rotation);
+      */
     }
   }
 

@@ -12,7 +12,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ArmSubsystem extends SubsystemBase {
   static CANSparkMax armMotor = new CANSparkMax(Constants.armMotorID, MotorType.kBrushed);
@@ -22,6 +21,8 @@ public class ArmSubsystem extends SubsystemBase {
   public ArmSubsystem() {}
 
   public void spinMotor(double speed){
+    armMotor.set(speed);
+    /*
     // If arm is moving up (speed greater than zero):
     if(speed > 0) {
       // if top limit switch is pressed (true): set speed to zero
@@ -46,7 +47,7 @@ public class ArmSubsystem extends SubsystemBase {
             SmartDashboard.putString("Arm Status", "Moving Down");
             armMotor.set(speed);
         }
-    }
+    } */
   }
 
   public void brakeMotor(){

@@ -4,7 +4,7 @@
 
 package frc.robot.commands.Intake;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -25,14 +25,14 @@ public class IntakeIn extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putString("Intake Status", "Intake In");
+    //SmartDashboard.putString("Intake Status", "Intake In");
     intakeSubsystem.spinMotors(.2);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Intake Status", "Intake Off");
+    //SmartDashboard.putString("Intake Status", "Intake Off");
     intakeSubsystem.spinMotors(0);
   }
 

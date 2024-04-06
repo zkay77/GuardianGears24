@@ -5,7 +5,7 @@
 package frc.robot.commands.Arm;
 
 import frc.robot.subsystems.ArmSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class ArmDown extends Command {
@@ -27,14 +27,14 @@ public class ArmDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putString("Arm Status", "Moving Down");
+    //SmartDashboard.putString("Arm Status", "Moving Down");
     armSubsystem.spinMotor(-.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Arm Status", "Stationary");
+    //SmartDashboard.putString("Arm Status", "Stationary");
     armSubsystem.spinMotor(0);
   }
 

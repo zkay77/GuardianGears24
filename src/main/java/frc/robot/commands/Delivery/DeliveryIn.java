@@ -4,7 +4,7 @@
 
 package frc.robot.commands.Delivery;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DeliverySubsystem;
 
@@ -25,14 +25,14 @@ public class DeliveryIn extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { // speed value has to be positive to go in
-    SmartDashboard.putString("Delivery Status", "Delivery In");
+    //SmartDashboard.putString("Delivery Status", "Delivery In");
     deliverySubsystem.spinMotor(.7);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Delivery Status", "Stationary");
+    //SmartDashboard.putString("Delivery Status", "Stationary");
     deliverySubsystem.spinMotor(0);
   }
 
