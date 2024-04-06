@@ -2,38 +2,40 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DeliverySubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 
-public class DeliveryIn extends Command {
-  private final DeliverySubsystem deliverySubsystem;
+public class ArmUp extends Command {
+  private final ArmSubsystem armSubsystem;
 
-  /** Creates a new DeliveryIn. */
-  public DeliveryIn(DeliverySubsystem deliverySubsystem) {
-    this.deliverySubsystem = deliverySubsystem;
+  /** Creates a new ArmUp. */
+  public ArmUp(ArmSubsystem armSubsystem) {
+    this.armSubsystem = armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(deliverySubsystem);
+    addRequirements(armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    armSubsystem.brakeMotor();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() { // speed value has to be positive to go in
-    SmartDashboard.putString("Delivery Status", "Delivery In");
-    deliverySubsystem.spinMotor(.7);
+  public void execute() {
+    SmartDashboard.putString("Arm Status", "Moving Up");
+    armSubsystem.spinMotor(.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Delivery Status", "Stationary");
-    deliverySubsystem.spinMotor(0);
+    SmartDashboard.putString("Arm Status", "Stationary");
+    armSubsystem.spinMotor(0);
   }
 
   // Returns true when the command should end.
