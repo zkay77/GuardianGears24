@@ -39,7 +39,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
       private static final XboxController xbox1 = new XboxController(0);
-      private static final XboxController xbox2 = new XboxController(1);
+      //private static final XboxController xbox2 = new XboxController(1);
 
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
       private final ArmSubsystem armSubsystem = new ArmSubsystem();
