@@ -10,6 +10,7 @@ import frc.robot.subsystems.DeliverySubsystem;
 
 public class DeliveryOut extends Command {
   private final DeliverySubsystem deliverySubsystem;
+  private boolean sensorsHaveTriggered;
 
   /** Creates a new DeliveryOut. */
   public DeliveryOut(DeliverySubsystem deliverySubsystem) {
@@ -20,17 +21,31 @@ public class DeliveryOut extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    if(DeliverySubsystem.deliverySensorIn.get() && DeliverySubsystem.deliverySensorOut.get()){
+      sensorsHaveTriggered = true;
+    }
+    else{
+      sensorsHaveTriggered = false;
+    }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  if(DeliverySubsystem.deliverySensorIn.get() && DeliverySubsystem.deliverySensorOut.get()){
-    SmartDashboard.putString("Delivery Status", "Delivery Out");
-    deliverySubsystem.spinMotor(-.7);
+  public void execute() { // speed value has to be negative to go out
+    SmartDashboard.putBoolean("sensorsHaveTriggered", sensorsHaveTriggered);
+    if(!sensorsHaveTriggered){
+      if(DeliverySubsystem.deliverySensorIn.get() && DeliverySubsystem.deliverySensorOut.get()) {
+        SmartDashboard.putString("Delivery Status", "Delivery out sensors not triggered");
+        deliverySubsystem.spinMotor(-.7);
+      }
+      else{
+        deliverySubsystem.spinMotor(0);
+      }
     }
-  else{
-    deliverySubsystem.spinMotor(0);
+    else{
+      SmartDashboard.putString("Delivery Status", "Delivery out after sensors triggered");
+      deliverySubsystem.spinMotor(-.7);
     }
   }
 

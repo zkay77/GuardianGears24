@@ -21,7 +21,7 @@ public class ArmUp extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    armSubsystem.brakeMotor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,7 +36,6 @@ public class ArmUp extends Command {
   public void end(boolean interrupted) {
     SmartDashboard.putString("Arm Status", "Stationary");
     armSubsystem.spinMotor(0);
-    armSubsystem.brakeMotor();
   }
 
   // Returns true when the command should end.

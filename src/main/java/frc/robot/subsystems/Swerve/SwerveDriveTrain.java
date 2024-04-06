@@ -86,7 +86,7 @@ public class SwerveDriveTrain extends SubsystemBase {
     for(int i = 0; i < states.length; i++) { 
       SwerveModuleMK3 module = modules[i]; 
       SwerveModuleState state = states[i]; 
-      SmartDashboard.putNumber(String.valueOf(i), module.getRawAngle()); 
+      SmartDashboard.putNumber("Module " + String.valueOf(i) + " RawAngle", module.getRawAngle()); 
       //below is a line to comment out from step 5 
       module.setDesiredState(state); 
       SmartDashboard.putNumber("gyro Angle", gyro.getAngle());

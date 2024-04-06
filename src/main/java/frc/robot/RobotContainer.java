@@ -15,9 +15,11 @@ import frc.robot.commands.Swerve.SwerveBrake;
 import frc.robot.commands.Swerve.SwerveDriveCommand;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmCoast;
 import frc.robot.commands.DeliveryIn;
 import frc.robot.commands.DeliveryOut;
-import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeIn;
+import frc.robot.commands.IntakeOut;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DeliverySubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -62,15 +64,19 @@ public class RobotContainer {
    * joysticks}.
    */
 
-  private void configureBindings() {
+  private void configureBindings() { // Triggers don't work because they use an axis value instead of a boolean
     // (In SwerveDriveCommand line 54) Calibrate gyro, LB
     // (In SwerveDriveCommand line 55) Set fieldRelative to false, LB
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // Brake swerve, button 5 (LB), driver 1
-    new JoystickButton(xbox1, 5).whileTrue(new SwerveBrake(driveTrain)); 
-    // Intake on, button 6 (RB), driver 1
-    new JoystickButton(xbox1, 6).whileTrue(new IntakeOn(intakeSubsystem));
+    // Brake swerve, button 3 (X), driver 1
+    new JoystickButton(xbox1, 3).whileTrue(new SwerveBrake(driveTrain)); 
+    // Intake in, button 6 (RB), driver 1
+    new JoystickButton(xbox1, 6).whileTrue(new IntakeIn(intakeSubsystem));
+    // Intake out, button 5 (LB), driver 1
+    new JoystickButton(xbox1, 5).whileTrue(new IntakeOut(intakeSubsystem));
+    // Set arm motor to coast, button 4 (Y), driver 1
+    new JoystickButton(xbox1, 4).whileTrue(new ArmCoast(armSubsystem)); 
     // Arm up, button 4 (Y), driver 2
     new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem)); 
     // Arm down, button 1 (A), driver 2

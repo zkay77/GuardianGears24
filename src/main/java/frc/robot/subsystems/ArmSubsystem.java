@@ -22,7 +22,6 @@ public class ArmSubsystem extends SubsystemBase {
   public ArmSubsystem() {}
 
   public void spinMotor(double speed){
-    //armMotor.set(speed);
     // If arm is moving up (speed greater than zero):
     if(speed > 0) {
       // if top limit switch is pressed (true): set speed to zero

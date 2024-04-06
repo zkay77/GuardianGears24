@@ -24,14 +24,9 @@ public class DeliveryIn extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  if(DeliverySubsystem.deliverySensorIn.get() && DeliverySubsystem.deliverySensorOut.get()) {
+  public void execute() { // speed value has to be positive to go in
     SmartDashboard.putString("Delivery Status", "Delivery In");
     deliverySubsystem.spinMotor(.7);
-    }
-  else{
-    deliverySubsystem.spinMotor(0);
-    }
   }
 
   // Called once the command ends or is interrupted.
