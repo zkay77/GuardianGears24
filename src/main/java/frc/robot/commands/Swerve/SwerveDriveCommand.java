@@ -9,9 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 //resources to import: controller, SlewRateLimiter, 
 import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.filter.SlewRateLimiter;
-//import frc.robot.subsystems.SwerveModuleMK3;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Swerve.SwerveDriveTrain;
@@ -48,11 +46,9 @@ public class SwerveDriveCommand extends Command {
     final var xSpeed = -xSpeedLimiter.calculate(RobotContainer.getLeftXPower() * Constants.kMaxSpeed);  //times max speed
     final var ySpeed = -ySpeedLimiter.calculate(RobotContainer.getLeftYPower()* Constants.kMaxSpeed);  //times max speed
     final var rot = -rotLimiter.calculate(RobotContainer.getRightXPower()* Constants.kMaxAngularSpeed);  //times max angle speed
-    //SmartDashboard.putNumber("RightXPower", RobotContainer.getRightXPower());
 
     //set calibration type (self / field)
     boolean calibrate = xbox.getRightStickButton();
-    //boolean fieldRelative = xbox.getRightStickButton();
 
     //drive method
     driveTrain.drive(xSpeed, ySpeed, rot, Constants.fieldRelative, calibrate, true);

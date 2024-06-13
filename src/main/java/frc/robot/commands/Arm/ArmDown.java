@@ -5,36 +5,37 @@
 package frc.robot.commands.Arm;
 
 import frc.robot.subsystems.ArmSubsystem;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class ArmDown extends Command {
   private final ArmSubsystem armSubsystem;
 
   /** Creates a new ArmDown. */
-  public ArmDown(ArmSubsystem armSubsystem) {
-    this.armSubsystem = armSubsystem;
+  public ArmDown(ArmSubsystem m_armSubsystem) {
+    // Set armSubsystem equal to m_armSubsystem so m_armSubsystem can be used outside of the constructor
+    armSubsystem = m_armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(armSubsystem);
+    addRequirements(m_armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    armSubsystem.brakeMotor();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //SmartDashboard.putString("Arm Status", "Moving Down");
+    // Pass a negative value into the spinMotor method in armSubsystem,
+    // makes the motor spin backwards (counterclockwise)
     armSubsystem.spinMotor(-.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //SmartDashboard.putString("Arm Status", "Stationary");
+    // Stop the motor
     armSubsystem.spinMotor(0);
   }
 
