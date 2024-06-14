@@ -39,9 +39,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+      // set controllers
       private static final XboxController xbox1 = new XboxController(0);
       private static final XboxController xbox2 = new XboxController(1);
-
+      // make objects for each subsystem
       private final SwerveDriveTrain driveTrain = new SwerveDriveTrain();
       private final ArmSubsystem armSubsystem = new ArmSubsystem();
       private final DeliverySubsystem deliverySubsystem = new DeliverySubsystem();
@@ -65,7 +66,6 @@ public class RobotContainer {
 
   private void configureBindings() { // Triggers don't work because they use an axis value instead of a boolean
     // (In SwerveDriveCommand line 54) Calibrate gyro, R3
-    // (In SwerveDriveCommand line 55) Set fieldRelative to false
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
     // Brake swerve, button 9 (L3), driver 1
@@ -91,6 +91,7 @@ public class RobotContainer {
    */
   // set sequence of autonomous methods
   public Command getAutonomousCommand() {
+    // Put the autonomous commands in the order you want them in this line
     return Commands.sequence(AutoDrive(.10, 2));
     //return Commands.sequence(AutoIntakeOn(2), AutoMoveArm(.7), AutoDelivery(1));
   }
