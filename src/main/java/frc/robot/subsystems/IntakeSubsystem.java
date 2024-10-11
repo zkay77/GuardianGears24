@@ -15,6 +15,7 @@ public class IntakeSubsystem extends SubsystemBase {
   // pass in the CAN IDs from constants, and they both are NEO motors which are brushless
   static CANSparkMax leftIntakeMotor = new CANSparkMax(Constants.leftIntakeMotorID, MotorType.kBrushless);
   static CANSparkMax rightIntakeMotor = new CANSparkMax(Constants.rightIntakeMotorID, MotorType.kBrushless);
+ 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
 

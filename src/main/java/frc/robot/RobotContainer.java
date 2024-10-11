@@ -6,7 +6,9 @@ package frc.robot;
 
 
 import frc.robot.commands.Delivery.DeliveryIn;
+import frc.robot.commands.Delivery.DeliveryInLimited;
 import frc.robot.commands.Delivery.DeliveryOut;
+import frc.robot.commands.Delivery.DeliveryOutLimited;
 import frc.robot.commands.Intake.IntakeIn;
 import frc.robot.commands.Intake.IntakeOut;
 import frc.robot.commands.Swerve.SwerveBrake;
@@ -18,7 +20,9 @@ import frc.robot.autos.AutoSwerveDrive;
 import frc.robot.autos.AutoSwerveTurn;
 import frc.robot.autos.SwerveCalibrate;
 import frc.robot.commands.Arm.ArmDown;
+import frc.robot.commands.Arm.ArmDownLimited;
 import frc.robot.commands.Arm.ArmUp;
+import frc.robot.commands.Arm.ArmUpLimited;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DeliverySubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -74,6 +78,14 @@ public class RobotContainer {
     new JoystickButton(xbox1, 6).whileTrue(new IntakeIn(intakeSubsystem));
     // Intake out, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new IntakeOut(intakeSubsystem));
+    // Arm up, button 4 (Y), driver 1
+    new JoystickButton(xbox1, 4).whileTrue(new ArmUpLimited(armSubsystem)); 
+    // Arm down, button 1 (A), driver 1
+    new JoystickButton(xbox1, 1).whileTrue(new ArmDownLimited(armSubsystem)); 
+    // Delivery out, button 2 (B), driver 1
+    new JoystickButton(xbox1, 2).whileTrue(new DeliveryOutLimited(deliverySubsystem)); 
+    // Delivery in, button 3 (X), driver 1
+    new JoystickButton(xbox1, 3).whileTrue(new DeliveryInLimited(deliverySubsystem)); 
     // Arm up, button 4 (Y), driver 2
     new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem)); 
     // Arm down, button 1 (A), driver 2
