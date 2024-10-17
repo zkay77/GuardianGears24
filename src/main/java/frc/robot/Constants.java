@@ -24,8 +24,7 @@ public final class Constants {
   public static final int rightIntakeMotorID = 16;
   public static final int deliverySensorInChannel = 2;
   public static final int deliverySensorOutChannel = 3;
-  public static final int upArmLimitSwitchChannel = 1;
-  public static final int downArmLimitSwitchChannel = 4;
+  public static final int upArmLimitSwitchChannel = 0;
     
   //set offsets for every module 
   public static double frontLeftOffset = 113.5;

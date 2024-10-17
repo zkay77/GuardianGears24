@@ -29,7 +29,7 @@ public class ArmUpLimited extends Command {
   public void execute() {
     // Pass a positive value into the spinMotor method in armSubsystem,
     // makes the motor spin forwards (clockwise)
-    if(ArmSubsystem.upArmLimitSwitch.get() && ArmSubsystem.downArmLimitSwitch.get()) {
+    if(ArmSubsystem.upArmLimitSwitch.get()) {
       armSubsystem.spinMotor(.7);
     } else {
       armSubsystem.spinMotor(0);

@@ -7,11 +7,11 @@ package frc.robot.commands.Delivery;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DeliverySubsystem;
 
-public class DeliveryOut extends Command {
+public class DeliveryScoreLimited extends Command {
   private final DeliverySubsystem deliverySubsystem;
 
-  /** Creates a new DeliveryOut. */
-  public DeliveryOut(DeliverySubsystem m_deliverySubsystem) {
+  /** Creates a new DeliveryOutLimited. */
+  public DeliveryScoreLimited(DeliverySubsystem m_deliverySubsystem) {
     // Set deliverySubsystem equal to m_deliverySubsystem so m_deliverySubsystem can be used outside of the constructor
     deliverySubsystem = m_deliverySubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,7 +27,11 @@ public class DeliveryOut extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { // speed value has to be negative to go out
-    deliverySubsystem.spinMotor(-1);
+    if(!DeliverySubsystem.deliverySensorIn.get() && !DeliverySubsystem.deliverySensorOut.get()){
+      deliverySubsystem.spinMotor(-.7);
+    } else {
+      deliverySubsystem.spinMotor(0);
+    }
   }
 
   // Called once the command ends or is interrupted.

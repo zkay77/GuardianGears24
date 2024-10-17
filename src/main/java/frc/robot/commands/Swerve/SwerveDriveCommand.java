@@ -51,13 +51,13 @@ public class SwerveDriveCommand extends Command {
     boolean calibrate = xbox.getRightStickButton();
 
     //drive method
-    driveTrain.drive(xSpeed, ySpeed, rot, Constants.fieldRelative, calibrate, true);
+    driveTrain.drive(xSpeed, ySpeed, rot, Constants.fieldRelative, calibrate, false);
 
   }
 
   @Override
   public void end(boolean interrupted) {
-    driveTrain.drive(0, 0, 0, Constants.fieldRelative, false, true);
+    driveTrain.drive(0, 0, 0, Constants.fieldRelative, false, false);
   }
 
   @Override

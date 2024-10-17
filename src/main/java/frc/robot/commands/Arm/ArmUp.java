@@ -29,7 +29,7 @@ public class ArmUp extends Command {
   public void execute() {
     // Pass a positive value into the spinMotor method in armSubsystem,
     // makes the motor spin forwards (clockwise)
-    armSubsystem.spinMotor(.7);
+    armSubsystem.spinMotor(.5);
   }
 
   // Called once the command ends or is interrupted.

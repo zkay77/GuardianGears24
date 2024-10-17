@@ -19,7 +19,7 @@ public class ArmSubsystem extends SubsystemBase {
   // Use DigitalInput to create objects for up and down limit switches (we never got to use these)
   // Pass them each their PWM channel from constants
   public static DigitalInput upArmLimitSwitch = new DigitalInput(Constants.upArmLimitSwitchChannel);
-  public static DigitalInput downArmLimitSwitch = new DigitalInput(Constants.downArmLimitSwitchChannel);
+  //public static DigitalInput downArmLimitSwitch = new DigitalInput(Constants.downArmLimitSwitchChannel);
  
   /** Creates a new ArmSubsystem. */
   public ArmSubsystem() {

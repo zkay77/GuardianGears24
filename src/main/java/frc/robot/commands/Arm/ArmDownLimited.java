@@ -29,7 +29,7 @@ public class ArmDownLimited extends Command {
   public void execute() {
     // Pass a negative value into the spinMotor method in armSubsystem,
     // makes the motor spin backwards (counterclockwise)
-    if(ArmSubsystem.upArmLimitSwitch.get() && ArmSubsystem.downArmLimitSwitch.get()) {
+    if(ArmSubsystem.upArmLimitSwitch.get()) {
       armSubsystem.spinMotor(-.5);
     } else {
       armSubsystem.spinMotor(0);
