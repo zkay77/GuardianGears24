@@ -75,9 +75,9 @@ public class RobotContainer {
     // Intake out, button 5 (LB), driver 1
     new JoystickButton(xbox1, 5).whileTrue(new IntakeOut(intakeSubsystem));
     // Arm up, button 4 (Y), driver 2
-    new JoystickButton(xbox2, 4).whileTrue(new ArmUp(armSubsystem)); 
+    new JoystickButton(xbox2, 4).onTrue(new ArmUp(armSubsystem).withTimeout(2.5)); 
     // Arm down, button 1 (A), driver 2
-    new JoystickButton(xbox2, 1).whileTrue(new ArmDown(armSubsystem)); 
+    new JoystickButton(xbox2, 1).onTrue(new ArmDown(armSubsystem).withTimeout(1)); 
     // Delivery score, button 2 (B), driver 2
     new JoystickButton(xbox2, 2).whileTrue(new DeliveryScore(deliverySubsystem)); 
     // Delivery eject, button 3 (X), driver 2

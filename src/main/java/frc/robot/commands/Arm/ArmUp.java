@@ -21,7 +21,7 @@ public class ArmUp extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -29,7 +29,7 @@ public class ArmUp extends Command {
   public void execute() {
     // Pass a positive value into the spinMotor method in armSubsystem,
     // makes the motor spin forwards (clockwise)
-    armSubsystem.spinMotor(.5);
+    armSubsystem.spinMotor(.7);
   }
 
   // Called once the command ends or is interrupted.
