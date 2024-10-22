@@ -29,7 +29,7 @@ public class ArmDown extends Command {
   public void execute() {
     // Pass a negative value into the spinMotor method in armSubsystem,
     // makes the motor spin backwards (counterclockwise)
-    armSubsystem.spinMotor(-.2);
+    armSubsystem.spinMotor(-.3);
   }
 
   // Called once the command ends or is interrupted.

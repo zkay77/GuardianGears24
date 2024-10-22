@@ -68,16 +68,16 @@ public class RobotContainer {
     // (In SwerveDriveCommand line 54) Calibrate gyro, R3
     // Swerve drive, driver 1
     driveTrain.setDefaultCommand(new SwerveDriveCommand(driveTrain, xbox1)); 
-    // Brake swerve, button 9 (L3), driver 1
-    new JoystickButton(xbox1, 9).whileTrue(new SwerveBrake(driveTrain)); 
+    // Brake swerve, button 10 (R3), driver 1
+    new JoystickButton(xbox1, 10).whileTrue(new SwerveBrake(driveTrain)); 
     // Intake in, button 6 (RB), driver 1
     new JoystickButton(xbox1, 6).whileTrue(new IntakeIn(intakeSubsystem));
-    // Intake out, button 5 (LB), driver 1
-    new JoystickButton(xbox1, 5).whileTrue(new IntakeOut(intakeSubsystem));
+    // Intake out, button 9 (L3), driver 1
+    new JoystickButton(xbox1, 9).whileTrue(new IntakeOut(intakeSubsystem));
     // Arm up, button 4 (Y), driver 2
-    new JoystickButton(xbox2, 4).onTrue(new ArmUp(armSubsystem).withTimeout(2.5)); 
+    new JoystickButton(xbox2, 4).onTrue(new ArmUp(armSubsystem)); 
     // Arm down, button 1 (A), driver 2
-    new JoystickButton(xbox2, 1).onTrue(new ArmDown(armSubsystem).withTimeout(1)); 
+    new JoystickButton(xbox2, 1).onTrue(new ArmDown(armSubsystem).withTimeout(.6)); 
     // Delivery score, button 2 (B), driver 2
     new JoystickButton(xbox2, 2).whileTrue(new DeliveryScore(deliverySubsystem)); 
     // Delivery eject, button 3 (X), driver 2

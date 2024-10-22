@@ -5,10 +5,8 @@
 package frc.robot.commands.Swerve;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
-
-//resources to import: controller, SlewRateLimiter, 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -22,17 +20,16 @@ public class SwerveDriveCommand extends Command {
   private final XboxController xbox;
 
   //set constants: xSpeed, ySpeed, rotSpeed
-  private final SlewRateLimiter xSpeedLimiter = new SlewRateLimiter(0.1);
-  private final SlewRateLimiter ySpeedLimiter = new SlewRateLimiter(0.1);
-  private final SlewRateLimiter rotLimiter = new SlewRateLimiter(0.1);
+  private final SlewRateLimiter xSpeedLimiter = new SlewRateLimiter(.6);
+  private final SlewRateLimiter ySpeedLimiter = new SlewRateLimiter(.6);
+  private final SlewRateLimiter rotLimiter = new SlewRateLimiter(.7);
 
   public SwerveDriveCommand(SwerveDriveTrain m_driveTrain, XboxController m_xbox) {
-    // Use addRequirements() here to declare subsystem dependencies.
     
     this.driveTrain = m_driveTrain;
     this.xbox = m_xbox; //set controller
     
-    //requirements from subsystem
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveTrain);
 
     
@@ -47,11 +44,14 @@ public class SwerveDriveCommand extends Command {
     final var ySpeed = -ySpeedLimiter.calculate(RobotContainer.getLeftYPower()* Constants.kMaxSpeed);  //times max speed
     final var rot = -rotLimiter.calculate(RobotContainer.getRightXPower()* Constants.kMaxAngularSpeed);  //times max angle speed
 
-    //set calibration type (self / field)
-    boolean calibrate = xbox.getRightStickButton();
+    //calibrate gyro
+    boolean calibrate = xbox.getBButton();
+    //hold left bumper to activate robot centric gyro
+    boolean fieldRelative = xbox.getLeftBumper();
+    SmartDashboard.putBoolean("fieldRelative", !fieldRelative);
 
     //drive method
-    driveTrain.drive(xSpeed, ySpeed, rot, Constants.fieldRelative, calibrate, false);
+    driveTrain.drive(xSpeed, ySpeed, rot, !fieldRelative, calibrate, false);
 
   }
 
